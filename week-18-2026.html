@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albo Projectradar — Week 18, 2026</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:15px}
+  a{color:inherit;text-decoration:none}
+  .nav{background:#1a1a2e;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  .nav-brand{color:#fff;font-weight:700;font-size:15px;letter-spacing:.08em}
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{color:#aaa;font-size:13px;padding:6px 12px;border-radius:4px;font-weight:500;transition:background .15s,color .15s}
+  .nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .nav-links a.active{color:#fff;font-weight:700;background:rgba(255,255,255,.12)}
+  .nav-links span.disabled{color:#555;font-size:13px;padding:6px 12px}
+  .header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);color:#fff;padding:40px 24px 32px}
+  .header-inner{max-width:1100px;margin:0 auto}
+  .header-brand{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7eceff;margin-bottom:8px}
+  .header h1{font-size:28px;font-weight:800;margin-bottom:6px}
+  .header .subtitle{font-size:16px;color:#b0c4d8;margin-bottom:4px}
+  .archive-note{margin-top:12px;background:rgba(255,255,255,.08);border-left:3px solid #7eceff;padding:8px 14px;font-size:12.5px;border-radius:0 4px 4px 0;color:#cde}
+  .summary{max-width:1100px;margin:24px auto 0;padding:0 24px}
+  .summary-bar{background:#fff;border-radius:10px;padding:16px 24px;display:flex;flex-wrap:wrap;gap:20px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .stat{display:flex;flex-direction:column;align-items:center;min-width:80px}
+  .stat-num{font-size:26px;font-weight:800;color:#1a1a2e}
+  .stat-lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+  .stat.accent .stat-num{color:#e74c3c}
+  .stat.blue .stat-num{color:#2980b9}
+  .divider{width:1px;background:#e8e8e8;align-self:stretch}
+  .main{max-width:1100px;margin:24px auto 48px;padding:0 24px}
+  .region{margin-bottom:36px}
+  .region-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .region-badge{background:#1a1a2e;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+  .region-badge.noord{background:#0f3460}
+  .region-badge.midden{background:#16213e}
+  .region-line{flex:1;height:1px;background:#e0e0e0}
+  .region-count{font-size:12px;color:#888}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);border:1px solid #eee;overflow:hidden;transition:box-shadow .2s}
+  .card:hover{box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .card-top{padding:16px 18px 12px;border-bottom:1px solid #f0f0f0}
+  .card-title{font-size:16px;font-weight:700;margin-bottom:3px;line-height:1.3}
+  .card-meta{font-size:12px;color:#888;margin-bottom:10px}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+  .badge.actie{background:#e74c3c;color:#fff}
+  .badge.opvolgen{background:#f39c12;color:#fff}
+  .badge.monitoren{background:#2980b9;color:#fff}
+  .badge.type{background:#f0f2f5;color:#555;font-weight:600}
+  .score{display:flex;align-items:center;gap:4px}
+  .score-label{font-size:11px;color:#888}
+  .score-dots{display:flex;gap:3px}
+  .dot{width:10px;height:10px;border-radius:50%;background:#e0e0e0}
+  .dot.filled{background:#f39c12}
+  .dot.filled.high{background:#2ecc71}
+  .card-body{padding:14px 18px}
+  .info-row{display:flex;margin-bottom:7px;font-size:13px}
+  .info-label{min-width:120px;color:#888;font-size:12px;padding-top:1px}
+  .info-value{color:#1a1a2e;font-weight:500}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+  .tag{background:#f0f7ff;color:#2980b9;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600}
+  .tag.brand{background:#fff3f0;color:#e74c3c}
+  .tag.rc{background:#f3fff0;color:#27ae60}
+  .source-link{font-size:11px;color:#2980b9;margin-top:10px;display:inline-block}
+  .status-box{background:#f9f9f9;border-left:3px solid #2980b9;padding:7px 10px;font-size:12px;color:#555;border-radius:0 4px 4px 0;margin-top:10px;line-height:1.5}
+  .highlight-card .card-top{background:linear-gradient(135deg,#f0f7ff,#e8f4fd)}
+  @media(max-width:600px){
+    .nav-links a,.nav-links span{font-size:11px;padding:5px 7px}
+    .header h1{font-size:20px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">ALBO PROJECTRADAR</span>
+  <div class="nav-links">
+    <a href="week-17-2026.html">Week 17</a>
+    <a href="week-18-2026.html" class="active">Week 18</a>
+    <a href="week-19-2026.html">Week 19</a>
+    <a href="week-20-2026.html">Week 20</a>
+    <span class="disabled">Week 21 →</span>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-brand">ALBO PROJECTRADAR</div>
+    <h1>Projectupdate &mdash; Week 18, 2026 <span style="font-weight:400;font-size:18px">(Historisch archief)</span></h1>
+    <div class="subtitle">27 april t/m 3 mei 2026</div>
+    <div class="archive-note">Dit rapport is achteraf samengesteld op basis van projecten gepubliceerd in week 18. Gegevens zijn zo nauwkeurig mogelijk, sommige details kunnen afwijken.</div>
+  </div>
+</div>
+
+<div class="summary">
+  <div class="summary-bar">
+    <div class="stat"><span class="stat-num">3</span><span class="stat-lbl">Projecten</span></div>
+    <div class="divider"></div>
+    <div class="stat blue"><span class="stat-num">2</span><span class="stat-lbl">Noord</span></div>
+    <div class="stat blue"><span class="stat-num">1</span><span class="stat-lbl">Midden</span></div>
+    <div class="stat blue"><span class="stat-num">0</span><span class="stat-lbl">Zuid</span></div>
+    <div class="divider"></div>
+    <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Hoge kans (≥4)</span></div>
+    <div class="stat accent"><span class="stat-num">0</span><span class="stat-lbl">Actie deze week</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- REGIO NOORD -->
+  <div class="region">
+    <div class="region-header">
+      <span class="region-badge noord">Regio Noord</span>
+      <div class="region-line"></div>
+      <span class="region-count">2 projecten</span>
+    </div>
+    <div class="cards">
+
+      <!-- IKC Sint Nicolaasga -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">IKC De Gearrin Sint Nicolaasga</div>
+          <div class="card-meta">Sint Nicolaasga (Friesland) &bull; Nieuwbouw school</div>
+          <div class="badges">
+            <span class="badge monitoren">MONITOREN</span>
+            <span class="badge type">Gegund</span>
+          </div>
+          <div class="score">
+            <span class="score-label">Kans:</span>
+            <div class="score-dots">
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size:12px;color:#888;margin-left:4px">3/5</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row"><span class="info-label">Hoofdaannemer</span><span class="info-value">Van der Meer Bouwbedrijf (Sneek)</span></div>
+          <div class="info-row"><span class="info-label">Opdrachtgever</span><span class="info-value">Gemeente De Fryske Marren</span></div>
+          <div class="info-row"><span class="info-label">Contact inkoop</span><span class="info-value">info@vandermeer-bouw.nl &bull; 0515-413900</span></div>
+          <div class="info-row"><span class="info-label">Architect</span><span class="info-value">onbekend</span></div>
+          <div class="info-row"><span class="info-label">Start / Oplevering</span><span class="info-value">juni 2026 / Q1 2027</span></div>
+          <div class="info-row"><span class="info-label">Projectwaarde</span><span class="info-value">ca. €4.500.000</span></div>
+          <div class="info-row"><span class="info-label">Omgevingsvergunning</span><span class="info-value">Verleend</span></div>
+          <div class="info-row"><span class="info-label">Deuren beslismoment</span><span class="info-value">september 2026</span></div>
+          <div class="info-row">
+            <span class="info-label">Deurspecificaties</span>
+            <div>
+              <div class="tags">
+                <span class="tag">ca. 90 deuren</span>
+                <span class="tag">Binnendeuren hout school</span>
+                <span class="tag brand">EI30</span>
+                <span class="tag">Rw ≥ 28 dB</span>
+                <span class="tag rc">RC2 buiten</span>
+                <span class="tag">HPL kleur</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-row"><span class="info-label">Fabrikanten</span><span class="info-value" style="color:#27ae60">Geen voorgeschreven</span></div>
+          <div class="status-box">Aannemerskeuze bekendgemaakt: Van der Meer Bouwbedrijf (Sneek) realiseert nieuw IKC (ca. 3800 m² bvo). Bouwstart begin juni 2026. School combineert De Paedwizer en Het Klimmerblêd met kinderopvang.</div>
+          <a class="source-link" href="https://www.defryskemarren.nl/projecten/ikc/" target="_blank">Bron: defryskemarren.nl &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Kindcentrum Enter -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">Kindcentrum De Middenstip Enter</div>
+          <div class="card-meta">Enter (Overijssel) &bull; Nieuwbouw kindcentrum</div>
+          <div class="badges">
+            <span class="badge opvolgen">OPVOLGEN</span>
+            <span class="badge type">Aanbesteding</span>
+          </div>
+          <div class="score">
+            <span class="score-label">Kans:</span>
+            <div class="score-dots">
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size:12px;color:#888;margin-left:4px">3/5</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row"><span class="info-label">Hoofdaannemer</span><span class="info-value">onbekend (aanbesteding lopende)</span></div>
+          <div class="info-row"><span class="info-label">Opdrachtgever</span><span class="info-value">Stichting KO Twenterand</span></div>
+          <div class="info-row"><span class="info-label">Contact</span><span class="info-value">info@wierden.nl &bull; 0546-580800</span></div>
+          <div class="info-row"><span class="info-label">Architect</span><span class="info-value">onbekend</span></div>
+          <div class="info-row"><span class="info-label">Start / Oplevering</span><span class="info-value">Q3 2026 / Q3 2027</span></div>
+          <div class="info-row"><span class="info-label">Projectwaarde</span><span class="info-value">ca. €5.200.000</span></div>
+          <div class="info-row"><span class="info-label">Omgevingsvergunning</span><span class="info-value">In aanvraag</span></div>
+          <div class="info-row"><span class="info-label">Deuren beslismoment</span><span class="info-value">augustus 2026</span></div>
+          <div class="info-row">
+            <span class="info-label">Deurspecificaties</span>
+            <div>
+              <div class="tags">
+                <span class="tag">ca. 95 deuren</span>
+                <span class="tag">Binnendeuren hout</span>
+                <span class="tag brand">EI30</span>
+                <span class="tag">Rw ≥ 28 dB</span>
+                <span class="tag rc">RC2</span>
+                <span class="tag">HPL</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-row"><span class="info-label">Fabrikanten</span><span class="info-value" style="color:#27ae60">Geen voorgeschreven</span></div>
+          <div class="status-box">Europese aanbesteding gepubliceerd voor realisatie Kindcentrum De Middenstip (ca. 3800 m² bvo). Lot 1: bouwkundig + coördinatie. Lot 2: installaties. Gunning verwacht zomer 2026. Nu is het moment voor Albo om in contact te treden met inschrijvers.</div>
+          <a class="source-link" href="https://www.wierden.nl/kindcentrum-enter" target="_blank">Bron: wierden.nl &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REGIO MIDDEN -->
+  <div class="region">
+    <div class="region-header">
+      <span class="region-badge midden">Regio Midden</span>
+      <div class="region-line"></div>
+      <span class="region-count">1 project</span>
+    </div>
+    <div class="cards">
+
+      <!-- Voormekaar Hoogveen -->
+      <div class="card highlight-card">
+        <div class="card-top">
+          <div style="font-size:11px;color:#2980b9;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">&#9733; Meest kansrijke project week 18</div>
+          <div class="card-title">Voormekaar Hoogveen Den Haag Zuidwest</div>
+          <div class="card-meta">Den Haag (Zuid-Holland) &bull; Nieuwbouw 867 woningen</div>
+          <div class="badges">
+            <span class="badge monitoren">MONITOREN</span>
+            <span class="badge type">Planfase</span>
+          </div>
+          <div class="score">
+            <span class="score-label">Kans:</span>
+            <div class="score-dots">
+              <div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div>
+            </div>
+            <span style="font-size:12px;color:#27ae60;font-weight:700;margin-left:4px">5/5</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row"><span class="info-label">Hoofdaannemer</span><span class="info-value">ERA Contour (won tender)</span></div>
+          <div class="info-row"><span class="info-label">Contact</span><span class="info-value">info@eracontour.nl &bull; 010-2174700</span></div>
+          <div class="info-row"><span class="info-label">Opdrachtgever</span><span class="info-value">WOM Den Haag Zuidwest (gemeente + Hof Wonen)</span></div>
+          <div class="info-row"><span class="info-label">Architect</span><span class="info-value">Kraaijvanger Architects</span></div>
+          <div class="info-row"><span class="info-label">Start / Oplevering</span><span class="info-value">2027 / 2029-2030</span></div>
+          <div class="info-row"><span class="info-label">Projectwaarde</span><span class="info-value">ca. €120.000.000</span></div>
+          <div class="info-row"><span class="info-label">Omgevingsvergunning</span><span class="info-value">In aanvraag</span></div>
+          <div class="info-row"><span class="info-label">Deuren beslismoment</span><span class="info-value">Q2 2027</span></div>
+          <div class="info-row">
+            <span class="info-label">Deurspecificaties</span>
+            <div>
+              <div class="tags">
+                <span class="tag">ca. 900 deuren</span>
+                <span class="tag">Appartementsdeuren + trappenhuisdeuren</span>
+                <span class="tag brand">EI30 / EI60</span>
+                <span class="tag">Rw ≥ 30 dB</span>
+                <span class="tag rc">RC2</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-row"><span class="info-label">Woningmix</span><span class="info-value">327 sociale huur + 180 middeldure huur + 360 koop</span></div>
+          <div class="info-row"><span class="info-label">Fabrikanten</span><span class="info-value" style="color:#27ae60">Geen voorgeschreven</span></div>
+          <div class="status-box">ERA Contour wint tender Hoogveen (april 2026). Architect Kraaijvanger. Planfase gestart — ideaal moment voor Albo om relatie op te bouwen met ERA Contour inkoop en Kraaijvanger specificatie. Bouwstart 2027.</div>
+          <a class="source-link" href="https://vastgoedjournaal.nl/news/72550/era-contour-wint-tender-voor-867-woningen-in-den-haag-zuidwest" target="_blank">Bron: vastgoedjournaal.nl &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

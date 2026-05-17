@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albo Projectradar — Startpagina</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:15px}
+  a{color:inherit;text-decoration:none}
+
+  /* Navbar */
+  .nav{background:#1a1a2e;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  .nav-brand{color:#fff;font-weight:700;font-size:15px;letter-spacing:.08em}
+  .nav-links{display:flex;gap:6px;align-items:center}
+  .nav-links a{color:#aaa;font-size:13px;padding:6px 12px;border-radius:4px;font-weight:500;transition:background .15s,color .15s}
+  .nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .nav-links span.disabled{color:#555;font-size:13px;padding:6px 12px}
+  .nav-sep{color:#333;padding:0 2px}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);color:#fff;padding:52px 24px 44px}
+  .hero-inner{max-width:1100px;margin:0 auto}
+  .hero-brand{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#7eceff;margin-bottom:10px}
+  .hero h1{font-size:36px;font-weight:800;margin-bottom:10px;line-height:1.1}
+  .hero-sub{font-size:17px;color:#b0c4d8;margin-bottom:24px;max-width:620px;line-height:1.5}
+
+  /* Countdown banner */
+  .countdown-banner{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:18px 24px;display:flex;align-items:center;gap:20px;max-width:580px;backdrop-filter:blur(4px)}
+  .countdown-icon{font-size:28px}
+  .countdown-text{line-height:1.5}
+  .countdown-title{font-weight:700;font-size:16px;color:#fff}
+  .countdown-detail{font-size:13px;color:#aac4df}
+
+  /* Main container */
+  .main{max-width:1100px;margin:0 auto;padding:32px 24px 64px}
+
+  /* Section header */
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;margin-top:36px}
+  .section-title{font-size:18px;font-weight:700;color:#1a1a2e}
+  .section-line{flex:1;height:1px;background:#ddd}
+
+  /* Top 5 */
+  .top5{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .top5-card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);border:1px solid #eee;padding:18px;transition:box-shadow .2s;display:flex;flex-direction:column;gap:10px}
+  .top5-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .top5-rank{font-size:11px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  .top5-name{font-size:15px;font-weight:700;color:#1a1a2e;line-height:1.3}
+  .top5-loc{font-size:12px;color:#888;margin-top:-4px}
+  .top5-meta{display:flex;gap:8px;flex-wrap:wrap}
+  .mini-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px;text-transform:uppercase}
+  .mini-badge.opvolgen{background:#fff3db;color:#c77d00}
+  .mini-badge.monitoren{background:#e8f0fb;color:#2563eb}
+  .mini-badge.actie{background:#fde8e8;color:#c0392b}
+  .score-row{display:flex;align-items:center;gap:6px}
+  .score-dots{display:flex;gap:3px}
+  .dot{width:9px;height:9px;border-radius:50%;background:#e0e0e0}
+  .dot.filled{background:#f39c12}
+  .dot.filled.high{background:#2ecc71}
+  .top5-link{font-size:12px;color:#2980b9;font-weight:600}
+  .top5-week{font-size:11px;color:#aaa}
+
+  /* Historical overview table */
+  .overview-table{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);border:1px solid #eee;overflow:hidden}
+  .ot-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 80px;padding:10px 16px;background:#f8f8f8;border-bottom:1px solid #eee;font-size:12px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.06em}
+  .ot-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 80px;padding:12px 16px;border-bottom:1px solid #f0f0f0;align-items:center;font-size:13px;transition:background .1s}
+  .ot-row:hover{background:#fafbfc}
+  .ot-row:last-child{border-bottom:none}
+  .ot-name{font-weight:600;line-height:1.3}
+  .ot-loc{font-size:11px;color:#888;margin-top:1px}
+  .ot-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;display:inline-block}
+  .ot-badge.opvolgen{background:#fff3db;color:#c77d00}
+  .ot-badge.monitoren{background:#e8f0fb;color:#2563eb}
+  .ot-badge.actie{background:#fde8e8;color:#c0392b}
+  .ot-score{display:flex;gap:2px}
+  .ot-dot{width:8px;height:8px;border-radius:50%;background:#e5e5e5}
+  .ot-dot.on{background:#f39c12}
+  .ot-dot.on.hi{background:#2ecc71}
+  .ot-link{font-size:12px;color:#2980b9;font-weight:600}
+  .week-label{font-size:11px;color:#aaa}
+
+  /* Region grouping in overview */
+  .region-row{background:#f8f9fc;padding:8px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;border-bottom:1px solid #eee;border-top:1px solid #eee}
+  .region-row:first-child{border-top:none}
+
+  @media(max-width:720px){
+    .ot-head,.ot-row{grid-template-columns:1fr 80px;gap:4px}
+    .ot-head .col-hide,.ot-row .col-hide{display:none}
+    .hero h1{font-size:26px}
+    .top5{grid-template-columns:1fr}
+    .nav-links a,.nav-links span{font-size:11px;padding:5px 7px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">ALBO PROJECTRADAR</span>
+  <div class="nav-links">
+    <a href="week-17-2026.html">Week 17</a>
+    <a href="week-18-2026.html">Week 18</a>
+    <a href="week-19-2026.html">Week 19</a>
+    <a href="week-20-2026.html">Week 20</a>
+    <span class="nav-sep">|</span>
+    <span class="disabled">Week 21 — verschijnt ma. 18 mei 06:00</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-brand">ALBO PROJECTRADAR &mdash; ALBO DEUREN</div>
+    <h1>Bouw- en renovatieprojecten<br>met houten deuren in Nederland</h1>
+    <div class="hero-sub">De Albo Projectradar signaleert wekelijks kansrijke nieuwbouw- en renovatieprojecten waarbij houten binnendeuren benodigd zijn. Dit is het historisch archief van week 17 t/m 20 (april&ndash;mei 2026).</div>
+    <div class="countdown-banner">
+      <div class="countdown-icon">&#128336;</div>
+      <div class="countdown-text">
+        <div class="countdown-title">Week 21 verschijnt maandag 18 mei om 06:00</div>
+        <div class="countdown-detail">De reguliere wekelijkse update start vanaf week 21. Hieronder het historisch archief van de afgelopen 4 weken.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- TOP 5 -->
+  <div class="section-header">
+    <span class="section-title">Top 5 meest kansrijke actieve projecten</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="top5">
+
+    <div class="top5-card">
+      <div class="top5-rank">#1 kansenscore 5/5</div>
+      <div class="top5-name">Voormekaar Hoogveen Den Haag Zuidwest</div>
+      <div class="top5-loc">Den Haag (Zuid-Holland) &bull; 867 woningen</div>
+      <div class="top5-meta">
+        <span class="mini-badge monitoren">MONITOREN</span>
+        <span class="mini-badge" style="background:#f0f0f0;color:#555">Planfase</span>
+      </div>
+      <div class="score-row">
+        <div class="score-dots">
+          <div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div>
+        </div>
+        <span style="font-size:12px;color:#27ae60;font-weight:700">5/5</span>
+      </div>
+      <div class="top5-week">Week 18 &bull; Deurbeslissing Q2 2027 &bull; ERA Contour / Kraaijvanger Architects</div>
+      <a class="top5-link" href="week-18-2026.html">Zie weekrapport 18 &rarr;</a>
+    </div>
+
+    <div class="top5-card">
+      <div class="top5-rank">#2 kansenscore 5/5</div>
+      <div class="top5-name">Renovatie Huis voor de Provincie Utrecht</div>
+      <div class="top5-loc">Utrecht (Utrecht) &bull; €101M renovatie</div>
+      <div class="top5-meta">
+        <span class="mini-badge monitoren">MONITOREN</span>
+        <span class="mini-badge" style="background:#f0f0f0;color:#555">Planfase</span>
+      </div>
+      <div class="score-row">
+        <div class="score-dots">
+          <div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div>
+        </div>
+        <span style="font-size:12px;color:#27ae60;font-weight:700">5/5</span>
+      </div>
+      <div class="top5-week">Week 19 &bull; Aanbesteding na zomer 2026 &bull; Provincie Utrecht</div>
+      <a class="top5-link" href="week-19-2026.html">Zie weekrapport 19 &rarr;</a>
+    </div>
+
+    <div class="top5-card">
+      <div class="top5-rank">#3 kansenscore 5/5</div>
+      <div class="top5-name">Nieuwbouw Verpleeghuis Bernardus Sassenheim</div>
+      <div class="top5-loc">Sassenheim (Zuid-Holland) &bull; 160 verpleegplaatsen</div>
+      <div class="top5-meta">
+        <span class="mini-badge monitoren">MONITOREN</span>
+        <span class="mini-badge" style="background:#f0f0f0;color:#555">Planfase</span>
+      </div>
+      <div class="score-row">
+        <div class="score-dots">
+          <div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div><div class="dot filled high"></div>
+        </div>
+        <span style="font-size:12px;color:#27ae60;font-weight:700">5/5</span>
+      </div>
+      <div class="top5-week">Week 20 &bull; Aanbesteding 2027 &bull; Marente / Buro Kade</div>
+      <a class="top5-link" href="week-20-2026.html">Zie weekrapport 20 &rarr;</a>
+    </div>
+
+    <div class="top5-card">
+      <div class="top5-rank">#4 kansenscore 4/5</div>
+      <div class="top5-name">Stadshavens Groningen fase 1 (VanWonen)</div>
+      <div class="top5-loc">Groningen (Groningen) &bull; ca. 300 woningen fase 1</div>
+      <div class="top5-meta">
+        <span class="mini-badge monitoren">MONITOREN</span>
+        <span class="mini-badge" style="background:#f0f0f0;color:#555">Planfase</span>
+      </div>
+      <div class="score-row">
+        <div class="score-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+        </div>
+        <span style="font-size:12px;color:#888;font-weight:700">4/5</span>
+      </div>
+      <div class="top5-week">Week 19 &bull; Bouw 2027 &bull; VanWonen</div>
+      <a class="top5-link" href="week-19-2026.html">Zie weekrapport 19 &rarr;</a>
+    </div>
+
+    <div class="top5-card" style="border-color:#f39c12">
+      <div class="top5-rank">#5 kansenscore 4/5 &mdash; <span style="color:#c77d00">Opvolgen</span></div>
+      <div class="top5-name">Groot Onderhoud Deuren &amp; Kozijnen Wonen Limburg</div>
+      <div class="top5-loc">Roermond (Limburg) &bull; 800+ deuren renovatie</div>
+      <div class="top5-meta">
+        <span class="mini-badge opvolgen">OPVOLGEN</span>
+        <span class="mini-badge" style="background:#f0f0f0;color:#555">Aanbesteding</span>
+      </div>
+      <div class="score-row">
+        <div class="score-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+        </div>
+        <span style="font-size:12px;color:#888;font-weight:700">4/5</span>
+      </div>
+      <div class="top5-week">Week 20 &bull; Beslissing juli 2026 &bull; Wonen Limburg inkoop</div>
+      <a class="top5-link" href="week-20-2026.html">Zie weekrapport 20 &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- HISTORISCH OVERZICHT -->
+  <div class="section-header" style="margin-top:48px">
+    <span class="section-title">Historisch overzicht &mdash; alle 12 projecten (week 17&ndash;20)</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="font-size:13px;color:#888;margin-bottom:16px">Totaal: 12 projecten &bull; 12 actief &bull; 1 ACTIE DEZE WEEK &bull; 4 OPVOLGEN &bull; 7 MONITOREN</div>
+
+  <div class="overview-table">
+    <div class="ot-head">
+      <div>Project &amp; locatie</div>
+      <div class="col-hide">Fase</div>
+      <div class="col-hide">Urgentie</div>
+      <div class="col-hide">Beslismoment</div>
+      <div>Score</div>
+    </div>
+
+    <!-- WEEK 17 -->
+    <div class="region-row">Week 17 (20&ndash;26 april 2026) &mdash; Regio Noord</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">CLT Woongebouw Couchette 1A Grunobuurt</div>
+        <div class="ot-loc">Groningen (Groningen) &bull; Nieuwbouw &bull; <a href="week-17-2026.html" style="color:#2980b9">Week 17</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f0fb;color:#2563eb">Gegund</span></div>
+      <div class="col-hide"><span class="ot-badge actie">ACTIE DEZE WEEK</span></div>
+      <div class="col-hide week-label">juni 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">3/5</span></div>
+    </div>
+
+    <div class="region-row">Week 17 (20&ndash;26 april 2026) &mdash; Regio Midden</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Woonzorgcentrum Nijemonde</div>
+        <div class="ot-loc">Nieuwegein (Utrecht) &bull; Nieuwbouw &bull; <a href="week-17-2026.html" style="color:#2980b9">Week 17</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f0fb;color:#2563eb">Gegund</span></div>
+      <div class="col-hide"><span class="ot-badge opvolgen">OPVOLGEN</span></div>
+      <div class="col-hide week-label">oktober 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">2/5</span></div>
+    </div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Treehouse Woontoren Rotterdam</div>
+        <div class="ot-loc">Rotterdam (Zuid-Holland) &bull; Nieuwbouw &bull; <a href="week-17-2026.html" style="color:#2980b9">Week 17</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#fff8e0;color:#b7770d">Aanbesteding</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">april 2027</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">3/5</span></div>
+    </div>
+
+    <!-- WEEK 18 -->
+    <div class="region-row">Week 18 (27 april &ndash; 3 mei 2026) &mdash; Regio Noord</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">IKC De Gearrin Sint Nicolaasga</div>
+        <div class="ot-loc">Sint Nicolaasga (Friesland) &bull; Nieuwbouw school &bull; <a href="week-18-2026.html" style="color:#2980b9">Week 18</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f0fb;color:#2563eb">Gegund</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">sept. 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">3/5</span></div>
+    </div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Kindcentrum De Middenstip Enter</div>
+        <div class="ot-loc">Enter (Overijssel) &bull; Nieuwbouw &bull; <a href="week-18-2026.html" style="color:#2980b9">Week 18</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#fff8e0;color:#b7770d">Aanbesteding</span></div>
+      <div class="col-hide"><span class="ot-badge opvolgen">OPVOLGEN</span></div>
+      <div class="col-hide week-label">aug. 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">3/5</span></div>
+    </div>
+
+    <div class="region-row">Week 18 (27 april &ndash; 3 mei 2026) &mdash; Regio Midden</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Voormekaar Hoogveen Den Haag Zuidwest</div>
+        <div class="ot-loc">Den Haag (Zuid-Holland) &bull; 867 woningen &bull; <a href="week-18-2026.html" style="color:#2980b9">Week 18</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f8f0;color:#1a7a4a">Planfase</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">Q2 2027</div>
+      <div><div class="ot-score"><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div></div><span style="font-size:11px;color:#27ae60;font-weight:700">5/5</span></div>
+    </div>
+
+    <!-- WEEK 19 -->
+    <div class="region-row">Week 19 (4&ndash;10 mei 2026) &mdash; Regio Noord</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Stadshavens Groningen fase 1 (VanWonen)</div>
+        <div class="ot-loc">Groningen (Groningen) &bull; ca. 300 won. (fase 1) &bull; <a href="week-19-2026.html" style="color:#2980b9">Week 19</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f8f0;color:#1a7a4a">Planfase</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">Q3 2027</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">4/5</span></div>
+    </div>
+
+    <div class="region-row">Week 19 (4&ndash;10 mei 2026) &mdash; Regio Midden</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Renovatie Huis voor de Provincie Utrecht</div>
+        <div class="ot-loc">Utrecht (Utrecht) &bull; Renovatie €101M &bull; <a href="week-19-2026.html" style="color:#2980b9">Week 19</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f8f0;color:#1a7a4a">Planfase</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">Q4 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div></div><span style="font-size:11px;color:#27ae60;font-weight:700">5/5</span></div>
+    </div>
+
+    <div class="region-row">Week 19 (4&ndash;10 mei 2026) &mdash; Regio Zuid</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">De Wijer Hapert fase 1</div>
+        <div class="ot-loc">Hapert (Noord-Brabant) &bull; 123 woningen &bull; <a href="week-19-2026.html" style="color:#2980b9">Week 19</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f0fb;color:#2563eb">Gegund</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">nov. 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">2/5</span></div>
+    </div>
+
+    <!-- WEEK 20 -->
+    <div class="region-row">Week 20 (11&ndash;17 mei 2026) &mdash; Regio Midden</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Schoolgebouw Park Vredenburgh Waddinxveen</div>
+        <div class="ot-loc">Waddinxveen (Zuid-Holland) &bull; Nieuwbouw school &bull; <a href="week-20-2026.html" style="color:#2980b9">Week 20</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f0fb;color:#2563eb">Gegund</span></div>
+      <div class="col-hide"><span class="ot-badge opvolgen">OPVOLGEN</span></div>
+      <div class="col-hide week-label">juni 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">3/5</span></div>
+    </div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Nieuwbouw Verpleeghuis Bernardus Sassenheim</div>
+        <div class="ot-loc">Sassenheim (Zuid-Holland) &bull; 160 verpleegplaatsen &bull; <a href="week-20-2026.html" style="color:#2980b9">Week 20</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#e8f8f0;color:#1a7a4a">Planfase</span></div>
+      <div class="col-hide"><span class="ot-badge monitoren">MONITOREN</span></div>
+      <div class="col-hide week-label">Q3 2027</div>
+      <div><div class="ot-score"><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div><div class="ot-dot on hi"></div></div><span style="font-size:11px;color:#27ae60;font-weight:700">5/5</span></div>
+    </div>
+
+    <div class="region-row">Week 20 (11&ndash;17 mei 2026) &mdash; Regio Zuid</div>
+    <div class="ot-row">
+      <div>
+        <div class="ot-name">Groot Onderhoud Deuren &amp; Kozijnen Wonen Limburg</div>
+        <div class="ot-loc">Roermond (Limburg) &bull; Renovatie 800+ deuren &bull; <a href="week-20-2026.html" style="color:#2980b9">Week 20</a></div>
+      </div>
+      <div class="col-hide"><span class="ot-badge" style="background:#fff8e0;color:#b7770d">Aanbesteding</span></div>
+      <div class="col-hide"><span class="ot-badge opvolgen">OPVOLGEN</span></div>
+      <div class="col-hide week-label">juli 2026</div>
+      <div><div class="ot-score"><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot on"></div><div class="ot-dot"></div></div><span style="font-size:11px;color:#888">4/5</span></div>
+    </div>
+
+  </div>
+
+  <!-- Footer note -->
+  <div style="margin-top:36px;padding:16px 20px;background:#fff;border-radius:8px;border:1px solid #eee;font-size:12.5px;color:#888;line-height:1.6">
+    <strong style="color:#1a1a2e">Over de Albo Projectradar</strong><br>
+    Dit archief is samengesteld als historische initialisatie. Projectgegevens zijn gebaseerd op openbare bronnen: TenderNed, Cobouw, Bouw &amp; Uitvoering, gemeentelijke publicaties en persbronnen. Albo Deuren levert houten deuren aan bouw- en renovatieprojecten in heel Nederland. Neem contact op via de projectleider voor leveringsopties en specificaties.
+  </div>
+
+</div>
+</body>
+</html>
