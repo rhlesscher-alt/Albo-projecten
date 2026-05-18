@@ -31,7 +31,8 @@
       "eerste_week": 17,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 17, "jaar": 2026, "tekst": "Bouwstart gepubliceerd april 2026. VDL De Meeuw start met woonzorgcentrum voor ZorgSpectrum (90 wooneenheden, 6-7 verdiepingen). Oplevering verwacht medio 2027. Vergunning verleend."}
+        {"week": 17, "jaar": 2026, "tekst": "Bouwstart gepubliceerd april 2026. VDL De Meeuw start met woonzorgcentrum voor ZorgSpectrum (90 wooneenheden, 6-7 verdiepingen). Oplevering verwacht medio 2027. Vergunning verleend."},
+        {"week": 21, "jaar": 2026, "tekst": "Bouwterrein afgezet april 2026. VDL De Meeuw gestart met grondwerk en funderingen. Omwonenden ondervonden hinder door ontbrekende alternatieve route; inmiddels opgelost. Beslismoment deuren verwacht september/oktober 2026."}
       ]
     },
     {
@@ -44,7 +45,7 @@
       "contact": {"naam": "Inkoop Trebbe Bouw", "email": "info@trebbe.nl", "telefoon": "0341-426800"},
       "architect": "onbekend",
       "timing_start": "Q4 2025",
-      "timing_oplevering": "Q3 2026",
+      "timing_oplevering": "zomer 2027",
       "projectwaarde": "ca. €12.000.000",
       "omgevingsvergunning": "verleend",
       "fase": "gegund",
@@ -65,7 +66,8 @@
       "eerste_week": 17,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 17, "jaar": 2026, "tekst": "Couchette 1A (82 sociale/middenhuurwoningen, CLT-bouw) in aanbouw door Trebbe voor Nijestee. Bouw gestart Q4 2025, oplevering verwacht Q3 2026. Deurbeslissing verwacht binnen 4 weken (contractuele deadlines naderen)."}
+        {"week": 17, "jaar": 2026, "tekst": "Couchette 1A (82 sociale/middenhuurwoningen, CLT-bouw) in aanbouw door Trebbe voor Nijestee. Bouw gestart Q4 2025, oplevering verwacht zomer 2027. Deurbeslissing verwacht binnen 4 weken."},
+        {"week": 21, "jaar": 2026, "tekst": "Couchette 1B (29 woningen) opgeleverd en eerste bewoners welkom per 1 mei 2026. Couchette 1A (82 woningen) nog volop in aanbouw, oplevering verwacht zomer 2027. Beslismoment deuren 1A: juni 2026 — DIRECT CONTACT OPNEMEN MET TREBBE BOUW."}
       ]
     },
     {
@@ -74,14 +76,14 @@
       "locatie": "Rotterdam (Zuid-Holland)",
       "regio": "midden",
       "type": "nieuwbouw",
-      "hoofdaannemer": "onbekend (aanbesteding)",
-      "contact": {"naam": "onbekend", "email": "onbekend", "telefoon": "onbekend"},
+      "hoofdaannemer": "BAM Bouw & Techniek",
+      "contact": {"naam": "BAM Bouw & Techniek – projectinkoop Treehouse", "email": "info@bam.nl", "telefoon": "030-6599111"},
       "architect": "onbekend",
       "timing_start": "september 2026",
       "timing_oplevering": "2029",
       "projectwaarde": "onbekend",
       "omgevingsvergunning": "verleend",
-      "fase": "aanbesteding",
+      "fase": "gegund",
       "beslismoment_deuren": "april 2027",
       "deurspecificaties": {
         "aantal": "ca. 299 sets",
@@ -92,14 +94,15 @@
         "afwerking": "onbekend"
       },
       "fabrikanten": [],
-      "kansenscore": 3,
+      "kansenscore": 4,
       "urgentie": "MONITOREN",
       "actief": true,
       "bron": "https://bouwenuitvoering.nl/nieuwbouw/treehouse-bouw-rotterdam-start-2/",
       "eerste_week": 17,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 17, "jaar": 2026, "tekst": "Aankondiging dat bouw van 130m hoge woontoren (299 app., 11e t/m 37e verdieping) definitief doorgaat. Bouwstart gepland september 2026. Aannemer nog niet geselecteerd."}
+        {"week": 17, "jaar": 2026, "tekst": "Aankondiging dat bouw van 130m hoge woontoren (299 app., 11e t/m 37e verdieping) definitief doorgaat. Bouwstart gepland september 2026. Aannemer nog niet geselecteerd."},
+        {"week": 21, "jaar": 2026, "tekst": "AANNEMER BEKEND: BAM Bouw & Techniek in opdracht van ProVast. Vergunning onherroepelijk (Raad van State: alle bezwaren ongegrond). Verkoop appartementen gestart mei 2026. Bouwstart september 2026 bevestigd. Kansenscore verhoogd van 3 naar 4."}
       ]
     },
     {
@@ -109,10 +112,10 @@
       "regio": "noord",
       "type": "nieuwbouw",
       "hoofdaannemer": "Van der Meer Bouwbedrijf",
-      "contact": {"naam": "Van der Meer Bouwbedrijf - projectleider", "email": "info@vandermeer-bouw.nl", "telefoon": "0515-413900"},
+      "contact": {"naam": "Van der Meer Bouwbedrijf – projectleider IKC", "email": "info@vandermeer-bouw.nl", "telefoon": "0515-413900"},
       "architect": "onbekend",
       "timing_start": "juni 2026",
-      "timing_oplevering": "Q1 2027",
+      "timing_oplevering": "eind 2026",
       "projectwaarde": "ca. €4.500.000",
       "omgevingsvergunning": "verleend",
       "fase": "gegund",
@@ -133,7 +136,8 @@
       "eerste_week": 18,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 18, "jaar": 2026, "tekst": "Aannemerskeuze bekendgemaakt: Van der Meer Bouwbedrijf (Sneek) realiseert nieuw IKC (ca. 3800 m² bvo) voor gemeente De Fryske Marren. Bouwstart begin juni 2026 verwacht. School combineert De Paedwizer en Het Klimmerblêd met kinderopvang."}
+        {"week": 18, "jaar": 2026, "tekst": "Aannemerskeuze: Van der Meer Bouwbedrijf (Sneek) realiseert nieuw IKC (ca. 3800 m² bvo). Bouwstart begin juni 2026 verwacht."},
+        {"week": 21, "jaar": 2026, "tekst": "Sloop oud schoolgebouw De Paedwizer gestart week 18 (27 april). Leerlingen in tijdelijke huisvesting. Informatiebijeenkomst omwonenden gepland mei 2026. Bouwstart verwacht begin juni 2026. Oplevering bijgesteld: eind 2026 (eerder Q1 2027)."}
       ]
     },
     {
@@ -143,8 +147,8 @@
       "regio": "noord",
       "type": "nieuwbouw",
       "hoofdaannemer": "onbekend (aanbesteding lopende)",
-      "contact": {"naam": "Gemeente Wierden - projectteam IKC", "email": "info@wierden.nl", "telefoon": "0546-580800"},
-      "architect": "onbekend",
+      "contact": {"naam": "Gemeente Wierden – projectteam KC Enter", "email": "info@wierden.nl", "telefoon": "0546-580800"},
+      "architect": "IAA Architecten",
       "timing_start": "Q3 2026",
       "timing_oplevering": "Q3 2027",
       "projectwaarde": "ca. €5.200.000",
@@ -160,14 +164,15 @@
         "afwerking": "HPL kleur nader te bepalen"
       },
       "fabrikanten": [],
-      "kansenscore": 3,
+      "kansenscore": 4,
       "urgentie": "OPVOLGEN",
       "actief": true,
       "bron": "https://www.wierden.nl/kindcentrum-enter",
       "eerste_week": 18,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 18, "jaar": 2026, "tekst": "Europese aanbesteding gepubliceerd voor realisatie Kindcentrum De Middenstip (ca. 3800 m² bvo, uitbreidbaar tot max. 10%). Lot 1: bouwkundig + coördinatie. Lot 2: installaties. Opdrachtgever: Stichting Katholiek Onderwijs Twenterand. Gunning verwacht zomer 2026."}
+        {"week": 18, "jaar": 2026, "tekst": "Europese aanbesteding gepubliceerd voor realisatie Kindcentrum De Middenstip (ca. 3800 m² bvo). Gunning verwacht zomer 2026."},
+        {"week": 21, "jaar": 2026, "tekst": "Bestemmingsplanwijziging onherroepelijk: geen bezwaren. Architect BEKEND: IAA Architecten won de architectenselectie. Aanbesteding bouwkundig werk lopende. Gunning verwacht zomer 2026. Kansenscore verhoogd van 3 naar 4."}
       ]
     },
     {
@@ -177,7 +182,7 @@
       "regio": "midden",
       "type": "nieuwbouw",
       "hoofdaannemer": "ERA Contour",
-      "contact": {"naam": "ERA Contour - projectontwikkeling", "email": "info@eracontour.nl", "telefoon": "010-2174700"},
+      "contact": {"naam": "ERA Contour – projectontwikkeling Hoogveen", "email": "info@eracontour.nl", "telefoon": "010-2174700"},
       "architect": "Kraaijvanger Architects",
       "timing_start": "2027",
       "timing_oplevering": "2029-2030",
@@ -201,7 +206,8 @@
       "eerste_week": 18,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 18, "jaar": 2026, "tekst": "ERA Contour wint tender voor 867 woningen in Den Haag Zuidwest (Hoogveen). Mix: 327 sociale huur + 180 middeldure huur + 360 koop. Architect: Kraaijvanger. Opdrachtgever: WOM Den Haag Zuidwest (gemeente + Hof Wonen). Bouwstart verwacht 2027."}
+        {"week": 18, "jaar": 2026, "tekst": "ERA Contour wint tender voor 867 woningen in Den Haag Zuidwest (Hoogveen). Mix: 327 sociale huur + 180 middeldure huur + 360 koop. Architect: Kraaijvanger."},
+        {"week": 21, "jaar": 2026, "tekst": "ERA Contour bevestigd als winnaar (persbericht april 2026). Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningprocedure loopt. Bouwstart verwacht 2027. Geen wijziging in score/urgentie."}
       ]
     },
     {
@@ -210,7 +216,7 @@
       "locatie": "Hapert (Noord-Brabant)",
       "regio": "zuid",
       "type": "nieuwbouw",
-      "hoofdaannemer": "onbekend",
+      "hoofdaannemer": "onbekend (developer: Van Heugten Beheer)",
       "contact": {"naam": "onbekend", "email": "onbekend", "telefoon": "onbekend"},
       "architect": "onbekend",
       "timing_start": "10 mei 2026",
@@ -235,7 +241,8 @@
       "eerste_week": 19,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 19, "jaar": 2026, "tekst": "Officiële bouwstart 10 mei 2026 voor fase 1 (123 woningen: rijwoningen en twee-onder-een-kap). Oplevering voorzien Q2 2027."}
+        {"week": 19, "jaar": 2026, "tekst": "Officiële bouwstart 10 mei 2026 voor fase 1 (123 woningen). Oplevering voorzien Q2 2027."},
+        {"week": 21, "jaar": 2026, "tekst": "Bouwstart fase 1 (42 woningen) bevestigd 10 mei 2026. Developer: Van Heugten Beheer. Uitvoerende aannemer nog niet publiek bekend. Contacteer Van Heugten Beheer voor doorverwijzing naar de bouwer."}
       ]
     },
     {
@@ -244,13 +251,13 @@
       "locatie": "Groningen (Groningen)",
       "regio": "noord",
       "type": "nieuwbouw",
-      "hoofdaannemer": "onbekend (planfase)",
-      "contact": {"naam": "VanWonen - projectteam Stadshavens", "email": "info@vanwonen.com", "telefoon": "050-5246200"},
+      "hoofdaannemer": "onbekend (VanWonen selecteert aannemer 2026)",
+      "contact": {"naam": "VanWonen – projectteam Stadshavens", "email": "info@vanwonen.com", "telefoon": "050-5246200"},
       "architect": "onbekend",
-      "timing_start": "2027",
-      "timing_oplevering": "2028-2029",
+      "timing_start": "2026 (kade gestart zomer 2025)",
+      "timing_oplevering": "2027-2028",
       "projectwaarde": "ca. €45.000.000 (fase 1, ca. 300 woningen)",
-      "omgevingsvergunning": "in aanvraag",
+      "omgevingsvergunning": "verleend",
       "fase": "planfase",
       "beslismoment_deuren": "Q3 2027",
       "deurspecificaties": {
@@ -269,7 +276,8 @@
       "eerste_week": 19,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 19, "jaar": 2026, "tekst": "Woonwensenvraag gestart voor eerste woongebouwen in Stadshavens Groningen (fase 1: ca. 300 woningen door VanWonen langs Eemskanaal). Totaalproject: 3300 woningen. Verkoop start najaar 2026, bouw verwacht 2027."}
+        {"week": 19, "jaar": 2026, "tekst": "Woonwensenvraag gestart voor eerste woongebouwen in Stadshavens Groningen (fase 1: ca. 300 woningen door VanWonen langs Eemskanaal). Totaalproject: 3300 woningen."},
+        {"week": 21, "jaar": 2026, "tekst": "VanWonen bevestigt bouwstart 300 woningen (sociale huur + koop) in 2026. Omgevingsvergunning onherroepelijk (geen beroep ingediend). Verkoop start najaar 2026. Kadeconstructie langs Eemskanaal in uitvoering. Aannemer wordt 2026 geselecteerd."}
       ]
     },
     {
@@ -279,14 +287,14 @@
       "regio": "midden",
       "type": "renovatie",
       "hoofdaannemer": "onbekend (aanbesteding na zomer 2026)",
-      "contact": {"naam": "Provincie Utrecht - Facilitaire Zaken", "email": "info@provincie-utrecht.nl", "telefoon": "030-2589111"},
+      "contact": {"naam": "Provincie Utrecht – Facilitaire Zaken", "email": "info@provincie-utrecht.nl", "telefoon": "030-2589111"},
       "architect": "onbekend",
       "timing_start": "2027",
       "timing_oplevering": "2031",
       "projectwaarde": "ca. €101.000.000",
       "omgevingsvergunning": "onbekend",
       "fase": "planfase",
-      "beslismoment_deuren": "Q4 2026 (onderdeel aanbestedingsdocumenten)",
+      "beslismoment_deuren": "Q3 2026 (aanbestedingsdocumenten)",
       "deurspecificaties": {
         "aantal": "ca. 400",
         "type": "binnendeuren hout provinciehuis renovatie",
@@ -297,13 +305,14 @@
       },
       "fabrikanten": [],
       "kansenscore": 5,
-      "urgentie": "MONITOREN",
+      "urgentie": "OPVOLGEN",
       "actief": true,
       "bron": "https://www.provincie-utrecht.nl/actueel/nieuws/renovatie-en-verduurzamingsplannen-huis-voor-de-provincie-naar-volgende-fase",
       "eerste_week": 19,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 19, "jaar": 2026, "tekst": "Renovatie- en verduurzamingsplannen (€101M) naar volgende fase. Definitief ontwerp gereed voor zomer 2026, aanbesteding start daarna. Bouw start 2027, oplevering verwacht 2031."}
+        {"week": 19, "jaar": 2026, "tekst": "Renovatie- en verduurzamingsplannen (€101M) naar volgende fase. Definitief ontwerp gereed voor zomer 2026, aanbesteding start daarna."},
+        {"week": 21, "jaar": 2026, "tekst": "Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026 — deurspecificaties worden onderdeel van aanbestedingsdocumenten (Q3 2026). Beslismoment bijgesteld naar Q3 2026. Urgentie verhoogd naar OPVOLGEN."}
       ]
     },
     {
@@ -313,8 +322,8 @@
       "regio": "midden",
       "type": "nieuwbouw",
       "hoofdaannemer": "Pellikaan Bouw",
-      "contact": {"naam": "Pellikaan Bouw - projectcoördinator", "email": "info@pellikaan.nl", "telefoon": "030-6985959"},
-      "architect": "onbekend",
+      "contact": {"naam": "Pellikaan Bouw – projectcoördinator Park Vredenburgh", "email": "info@pellikaan.nl", "telefoon": "030-6985959"},
+      "architect": "Spring Architecten",
       "timing_start": "Q1 2026",
       "timing_oplevering": "augustus 2026",
       "projectwaarde": "ca. €5.500.000",
@@ -323,21 +332,22 @@
       "beslismoment_deuren": "juni 2026",
       "deurspecificaties": {
         "aantal": "ca. 70",
-        "type": "binnendeuren hout basisschool",
+        "type": "binnendeuren hout basisschool (MFA)",
         "brandwerendheid": "EI30",
         "akoestiek": "Rw ≥ 28 dB",
         "inbraakwerendheid": "RC2 (buitendeuren)",
         "afwerking": "HPL kleur"
       },
       "fabrikanten": [],
-      "kansenscore": 3,
-      "urgentie": "OPVOLGEN",
+      "kansenscore": 4,
+      "urgentie": "ACTIE DEZE WEEK",
       "actief": true,
       "bron": "https://www.waddinxveen.nl/wonen-en-bouwen/overzicht-nieuwbouwprojecten/woningen-nieuwe-school-en-kinderopvang-in-park-vredenburgh/",
       "eerste_week": 20,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 20, "jaar": 2026, "tekst": "Eerste paal geslagen: Pellikaan bouwt nieuw schoolgebouw Park Vredenburgh. Milieuplan ter inzage 29 mei 2026. Oplevering voor schooljaar 2026-2027 (augustus 2026). Deurbeslissing verwacht juni 2026."}
+        {"week": 20, "jaar": 2026, "tekst": "Eerste paal geslagen: Pellikaan bouwt nieuw schoolgebouw Park Vredenburgh. Oplevering augustus 2026. Deurbeslissing verwacht juni 2026."},
+        {"week": 21, "jaar": 2026, "tekst": "Bouw volop in uitvoering. Architect BEVESTIGD: Spring Architecten (MFA Vredenburgh). Complex: 18 klassen CBS TOV + kinderopvang Partou + 1000m² maatschappelijke ruimte. Oplevering augustus 2026 staat vast. KRITIEK: beslismoment deuren JUNI 2026 — bel Pellikaan direct. Kansenscore verhoogd naar 4."}
       ]
     },
     {
@@ -347,7 +357,7 @@
       "regio": "midden",
       "type": "nieuwbouw",
       "hoofdaannemer": "onbekend (aanbesteding 2027)",
-      "contact": {"naam": "Marente - vastgoedteam Bernardus", "email": "info@marente.nl", "telefoon": "0252-220200"},
+      "contact": {"naam": "Marente – vastgoedteam Bernardus", "email": "info@marente.nl", "telefoon": "0252-220200"},
       "architect": "Buro Kade",
       "timing_start": "2028",
       "timing_oplevering": "2030",
@@ -371,7 +381,8 @@
       "eerste_week": 20,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 20, "jaar": 2026, "tekst": "Voorlopig ontwerp Nieuwbouw Bernardus gereed (architect: Buro Kade). Inloopbijeenkomst voor bewoners en omwonenden gepubliceerd. Definitief ontwerp en omgevingsvergunning gepland 2026-2027. Aanbesteding verwacht 2027."}
+        {"week": 20, "jaar": 2026, "tekst": "Voorlopig ontwerp Nieuwbouw Bernardus gereed (architect: Buro Kade). Aanbesteding verwacht 2027."},
+        {"week": 21, "jaar": 2026, "tekst": "Marente bevestigt: sloop huidig Bernardus verpleeghuis gepland 2026-2027. Buro Kade werkt definitief ontwerp uit. Omgevingsvergunningprocedure loopt. Geen wijziging in planning of score."}
       ]
     },
     {
@@ -381,7 +392,7 @@
       "regio": "zuid",
       "type": "renovatie",
       "hoofdaannemer": "onbekend (aanbesteding lopende)",
-      "contact": {"naam": "Wonen Limburg - Inkoop & Aanbestedingen", "email": "inkoop@wonenlimburg.nl", "telefoon": "0475-396800"},
+      "contact": {"naam": "Wonen Limburg – Inkoop & Aanbestedingen", "email": "inkoop@wonenlimburg.nl", "telefoon": "0475-396800"},
       "architect": "n.v.t.",
       "timing_start": "Q3 2026",
       "timing_oplevering": "Q4 2027",
@@ -405,7 +416,110 @@
       "eerste_week": 20,
       "eerste_jaar": 2026,
       "status_log": [
-        {"week": 20, "jaar": 2026, "tekst": "Aanbesteding gepubliceerd voor groot onderhoudspakket deuren & kozijnen bij Wonen Limburg corporatiewoningen (800+ deuren, meerdere complexen Midden-Limburg). Gunning verwacht juli 2026."}
+        {"week": 20, "jaar": 2026, "tekst": "Aanbesteding gepubliceerd voor groot onderhoudspakket deuren & kozijnen Wonen Limburg (800+ deuren). Gunning verwacht juli 2026."},
+        {"week": 21, "jaar": 2026, "tekst": "Geen nieuwe publicatie gevonden deze week. Aanbesteding lopende op Mercell-platform. Gunning verwacht juli 2026. Neem direct contact op via inkoop@wonenlimburg.nl."}
+      ]
+    },
+    {
+      "id": "mfa-nieuw-boekhorst-voorhout-2026",
+      "naam": "MFA Onderwijs & Sport Nieuw Boekhorst Voorhout",
+      "locatie": "Voorhout (Zuid-Holland)",
+      "regio": "midden",
+      "type": "nieuwbouw",
+      "hoofdaannemer": "onbekend (gunning eind 2026)",
+      "contact": {"naam": "Gemeente Teylingen – projectteam Nieuw Boekhorst", "email": "info@teylingen.nl", "telefoon": "0252-783000"},
+      "architect": "NEXT Architects",
+      "timing_start": "H2 2026",
+      "timing_oplevering": "Q1 2028",
+      "projectwaarde": "ca. €28.000.000",
+      "omgevingsvergunning": "in aanvraag",
+      "fase": "aanbesteding",
+      "beslismoment_deuren": "Q1 2027",
+      "deurspecificaties": {
+        "aantal": "ca. 130",
+        "type": "binnendeuren hout school + sporthal (3 zalen) + kinderopvang",
+        "brandwerendheid": "EI30 (school) / EI60 (sporthal)",
+        "akoestiek": "Rw ≥ 28 dB (school) / Rw ≥ 35 dB (sporthal)",
+        "inbraakwerendheid": "RC2 (buitendeuren)",
+        "afwerking": "HPL kleur nader te bepalen"
+      },
+      "fabrikanten": [],
+      "kansenscore": 3,
+      "urgentie": "MONITOREN",
+      "actief": true,
+      "bron": "https://www.tender.app/aanbestedingen-2026/uitvoeringswerkzaamheden-nieuwbouw-onderwijs-en-sportfaciliteit-nieuw-boekhorst-te-voorhout",
+      "eerste_week": 21,
+      "eerste_jaar": 2026,
+      "status_log": [
+        {"week": 21, "jaar": 2026, "tekst": "Eerste publicatie. Aanbesteding uitvoeringswerkzaamheden onderwijs- en sportfaciliteit (5200 m² bvo) gepubliceerd. Architect: NEXT Architects. Voorlopig ontwerp goedgekeurd maart 2026. Max. 5 inschrijvers, gunning eind 2026, bouwstart H2 2026, oplevering Q1 2028. Budget >€28M. Opdrachtgever: gemeente Teylingen voor Sophia Scholen + OBODB + UniKidz + sportverenigingen."}
+      ]
+    },
+    {
+      "id": "verpleeghuis-olmenhof-amstelveen-2026",
+      "naam": "Nieuwbouw Verpleeghuis Olmenhof Amstelveen",
+      "locatie": "Amstelveen (Noord-Holland)",
+      "regio": "midden",
+      "type": "nieuwbouw",
+      "hoofdaannemer": "onbekend (aanbesteding nog te starten)",
+      "contact": {"naam": "Woonzorg Nederland – projectteam Olmenhof", "email": "info@woonzorg.nl", "telefoon": "030-6800888"},
+      "architect": "onbekend",
+      "timing_start": "Q4 2026",
+      "timing_oplevering": "medio 2028",
+      "projectwaarde": "onbekend",
+      "omgevingsvergunning": "in aanvraag",
+      "fase": "planfase",
+      "beslismoment_deuren": "Q3 2027",
+      "deurspecificaties": {
+        "aantal": "ca. 185",
+        "type": "zorgdeuren hout brandwerend (134 app. dementerende senioren)",
+        "brandwerendheid": "EI60",
+        "akoestiek": "Rw ≥ 32 dB",
+        "inbraakwerendheid": "RC2",
+        "afwerking": "HPL hygiënisch"
+      },
+      "fabrikanten": [],
+      "kansenscore": 4,
+      "urgentie": "MONITOREN",
+      "actief": true,
+      "bron": "https://www.amstelveensnieuwsblad.nl/lokaal/nieuwbouw/103230/olmenhof-maakt-in-2026-plaats-voor-bouw-van-nieuw-en-modern-v",
+      "eerste_week": 21,
+      "eerste_jaar": 2026,
+      "status_log": [
+        {"week": 21, "jaar": 2026, "tekst": "Eerste publicatie. Woonzorg Nederland + Gemeente Amstelveen sluiten overeenkomst voor nieuw verpleeghuis op locatie Olmenhof (134 app. dementerende senioren, zorgverlener Brentano). Sloop huidig gebouw (1973) gepland Q2 2026. Bouwstart Q4 2026, oplevering medio 2028. Aanbesteding bouw nog niet gestart."}
+      ]
+    },
+    {
+      "id": "geuzenpark-hilversum-2026",
+      "naam": "Geuzenpark Hilversum (233 woningen transformatie)",
+      "locatie": "Hilversum (Noord-Holland)",
+      "regio": "midden",
+      "type": "transformatie",
+      "hoofdaannemer": "onbekend (aanbesteding 2027)",
+      "contact": {"naam": "Prosper Vitae – projectteam Geuzenpark", "email": "info@prospervitae.com", "telefoon": "onbekend"},
+      "architect": "onbekend",
+      "timing_start": "Q4 2026 (infra) / 2027 (woningbouw)",
+      "timing_oplevering": "2029-2030",
+      "projectwaarde": "onbekend (9 appartementengebouwen)",
+      "omgevingsvergunning": "in aanvraag",
+      "fase": "planfase",
+      "beslismoment_deuren": "Q2 2028",
+      "deurspecificaties": {
+        "aantal": "ca. 520",
+        "type": "binnendeuren hout meergezinswoningen (9 gebouwen)",
+        "brandwerendheid": "EI30 / EI60",
+        "akoestiek": "Rw ≥ 28 dB",
+        "inbraakwerendheid": "RC2",
+        "afwerking": "onbekend"
+      },
+      "fabrikanten": [],
+      "kansenscore": 4,
+      "urgentie": "MONITOREN",
+      "actief": true,
+      "bron": "https://bouwenuitvoering.nl/nieuwbouw/geuzenpark-woningen-hilversum-nieuwe-wijk/",
+      "eerste_week": 21,
+      "eerste_jaar": 2026,
+      "status_log": [
+        {"week": 21, "jaar": 2026, "tekst": "Eerste publicatie. Anterieure overeenkomst getekend (maart 2026) door gemeente Hilversum en Prosper Vitae voor transformatie voormalig bedrijventerrein naar 233 woningen + 1500 m² commercieel. Fase 1: 6 gebouwen. Sloop na zomer 2026, infra Q4 2026, eerste woningen medio 2029. SVn Transformatiefaciliteit betrokken."}
       ]
     }
   ]
