@@ -5,492 +5,836 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Albo Projectradar — Week 20 2026</title>
   <style>
-* { box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: #f7f8fc; color: #2d3748; }
-.stat-tegel:hover { background: #e2e8f0 !important; }
-.stat-tegel.actief { border-bottom: 3px solid #1a1a2e !important; }
-a { color: #3182ce; }
-@media (max-width: 768px) {
-  header h1 { font-size: 22px; }
-  nav > div { display: none; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f8fa; color: #1a202c; }
+nav { background: #1a1a2e; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; min-height: 52px; flex-wrap: wrap; gap: 8px; }
+.nav-brand { color: #fff; font-weight: 700; font-size: 15px; letter-spacing: 1px; padding: 14px 0; white-space: nowrap; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 0; }
+.nav-links a { color: #a0aec0; text-decoration: none; font-size: 13px; padding: 6px 10px; border-radius: 4px; transition: color .15s; }
+.nav-links a:hover { color: #fff; }
+.nav-links a.actief { color: #fff; font-weight: 700; background: #2d3748; }
+.header { background: #1a1a2e; color: #fff; padding: 32px 24px 24px; text-align: center; }
+.header h1 { font-size: 28px; letter-spacing: 2px; font-weight: 800; }
+.header .week-sub { margin-top: 6px; font-size: 16px; color: #a0aec0; }
+.header .week-datum { margin-top: 4px; font-size: 13px; color: #718096; }
+.archief-label { display: inline-block; margin-top: 8px; font-size: 11px; background: #2d3748; color: #a0aec0; padding: 3px 10px; border-radius: 12px; }
+.main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+.stat-balk { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.stat-tegel { background: #fff; border-radius: 10px; padding: 14px 18px; flex: 1; min-width: 90px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: background .15s; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.stat-tegel:hover { background: #e2e8f0; }
+.stat-tegel.actief { border-bottom: 3px solid #1a1a2e; background: #edf2f7; }
+.stat-tegel .getal { font-size: 26px; font-weight: 800; color: #1a1a2e; }
+.stat-tegel .label { font-size: 11px; color: #718096; text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+.zoekbalk { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08); padding: 16px 24px; display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+.zoek-veld { flex: 1; min-width: 220px; }
+.zoek-label { font-size: 11px; text-transform: uppercase; color: #a0aec0; font-weight: 700; margin-bottom: 6px; }
+.zoek-input-wrap { position: relative; display: flex; align-items: center; }
+.zoek-input-wrap input, .zoek-input-wrap select { border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; font-size: 14px; width: 100%; outline: none; background: #fff; }
+.zoek-input-wrap input:focus, .zoek-input-wrap select:focus { border-color: #667eea; }
+.wis-btn { position: absolute; right: 8px; background: none; border: none; cursor: pointer; color: #a0aec0; font-size: 16px; line-height: 1; display: none; }
+.sectie-titel { font-size: 18px; font-weight: 700; margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; color: #1a202c; }
+.regio-sectie { margin-bottom: 20px; }
+.regio-titel { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #667eea; letter-spacing: 1px; margin-bottom: 10px; }
+.kaarten-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.kaart-wrapper { }
+.projectkaart { background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,.07); border: 1px solid #e8ecef; height: 100%; }
+.projectkaart-terugblik { background: #fafafa; }
+.kaart-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.kaart-naam { font-size: 15px; font-weight: 700; color: #1a202c; line-height: 1.3; }
+.kaart-sub { font-size: 12px; color: #718096; margin-top: 3px; }
+.kaart-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.kaart-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.kans-sterren { color: #d69e2e; font-size: 13px; }
+.kaart-meta-item { font-size: 11px; color: #718096; background: #f7f8fa; border-radius: 4px; padding: 2px 7px; }
+.kaart-sectie { margin-bottom: 9px; font-size: 13px; color: #2d3748; }
+.kaart-label { font-size: 10px; text-transform: uppercase; font-weight: 700; color: #a0aec0; letter-spacing: .5px; margin-bottom: 3px; }
+.kaart-contact { font-size: 12px; color: #4a5568; margin-top: 3px; }
+.kaart-contact a { color: #667eea; text-decoration: none; }
+.kaart-contact a:hover { text-decoration: underline; }
+.spec-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.spec-tag { background: #ebf8ee; color: #276749; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+.beslismoment { font-weight: 700; color: #c05621; }
+.status-tekst { font-size: 12px; color: #4a5568; line-height: 1.5; }
+.badge { display: inline-block; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; white-space: nowrap; }
+.badge-nieuw { background: #e53e3e; color: #fff; }
+.urgentie-actie { background: #fed7d7; color: #c53030; }
+.urgentie-opvolgen { background: #feebc8; color: #c05621; }
+.urgentie-monitoren { background: #e2e8f0; color: #4a5568; }
+.urgentie-afgerond { background: #c6f6d5; color: #276749; }
+.kaart-footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid #f0f0f0; }
+.bron-link { font-size: 12px; color: #667eea; text-decoration: none; }
+.bron-link:hover { text-decoration: underline; }
+.dashboard { background: #fffbeb; border: 1px solid #f6e05e; border-radius: 10px; padding: 20px 24px; margin-bottom: 8px; }
+.dashboard-titel { font-size: 15px; font-weight: 800; color: #92400e; margin-bottom: 14px; }
+.dashboard-lijst { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.dashboard-kaart { background: #fff; border: 1px solid #faf089; border-radius: 8px; padding: 14px; }
+.dashboard-naam { font-weight: 700; font-size: 14px; color: #1a202c; }
+.dashboard-meta { font-size: 12px; color: #718096; margin-top: 4px; }
+.dashboard-beslismoment { font-size: 13px; font-weight: 700; color: #c05621; margin-top: 6px; }
+.log-entry { margin-bottom: 10px; }
+.log-week { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #667eea; display: block; margin-bottom: 3px; }
+.log-entry p { font-size: 12px; color: #4a5568; line-height: 1.5; }
+.trends { background: #fff; border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.trends-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 14px; }
+.trend-label { font-size: 11px; text-transform: uppercase; font-weight: 700; color: #a0aec0; margin-bottom: 4px; }
+.trend-waarde { font-size: 20px; font-weight: 700; color: #1a1a2e; }
+.trend-sub { font-size: 12px; color: #718096; margin-top: 2px; }
+.geen-projecten { color: #718096; font-size: 14px; padding: 12px 0; }
+@media (max-width: 600px) {
+  .stat-balk { gap: 6px; }
+  .stat-tegel { min-width: 75px; padding: 10px 10px; }
+  .stat-tegel .getal { font-size: 20px; }
+  .zoekbalk { flex-direction: column; gap: 12px; }
+  .kaarten-grid { grid-template-columns: 1fr; }
+  .dashboard-lijst { grid-template-columns: 1fr; }
 }
-</style>
+
+  </style>
 </head>
 <body>
-<nav style="background:#1a1a2e;width:100%;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;box-sizing:border-box;position:sticky;top:0;z-index:100;">
-  <span style="color:white;font-weight:800;font-size:16px;letter-spacing:1px;">ALBO PROJECTRADAR</span>
-  <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;"><a href="week-21-2026.html" style="color:#a0aec0;text-decoration:none;padding:6px 12px;">Week 21 — 2026</a> <a href="week-20-2026.html" style="color:white;font-weight:700;background:#2d3748;padding:6px 12px;border-radius:4px;text-decoration:none;">Week 20 — 2026</a> <a href="week-19-2026.html" style="color:#a0aec0;text-decoration:none;padding:6px 12px;">Week 19 — 2026</a> <a href="week-18-2026.html" style="color:#a0aec0;text-decoration:none;padding:6px 12px;">Week 18 — 2026</a> <a href="week-17-2026.html" style="color:#a0aec0;text-decoration:none;padding:6px 12px;">Week 17 — 2026</a></div>
+
+<nav>
+  <span class="nav-brand">ALBO PROJECTRADAR</span>
+  <div class="nav-links">
+    <a href="week-21-2026.html" class="">W21</a>
+    <a href="week-20-2026.html" class="actief">W20</a>
+    <a href="week-19-2026.html" class="">W19</a>
+    <a href="week-18-2026.html" class="">W18</a>
+    <a href="week-17-2026.html" class="">W17</a>
+    
+  </div>
 </nav>
-<header style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:white;padding:40px 24px;text-align:center;">
-  <h1 style="font-size:32px;font-weight:800;letter-spacing:2px;margin:0 0 8px 0;">ALBO PROJECTRADAR</h1>
-  <p style="font-size:18px;color:#a0aec0;margin:0 0 8px 0;">Projectupdate — Week 20 2026</p>
-  <p style="font-size:14px;color:#718096;margin:0 0 8px 0;">11 mei – 17 mei 2026</p>
-  <div style="background:#fef3cd;border:1px solid #fbbf24;border-radius:6px;padding:8px 16px;display:inline-block;margin-top:8px;font-size:13px;color:#92400e;">(Historisch archief — samengesteld 18 mei 2026)</div>
+
+<div class="header">
+  <h1>ALBO PROJECTRADAR</h1>
+  <p class="week-sub">Projectupdate &mdash; Week 20 2026</p>
+  <div class="week-datum">12 mei – 18 mei 2026</div>
+  <div><span class="archief-label">(Historisch archief)</span></div>
+</div>
+
+<div class="main">
+
+  <div class="stat-balk">
+    <div class="stat-tegel" onclick="resetFilters()" title="Toon alle projecten">
+      <div class="getal">17</div>
+      <div class="label">Totaal</div>
+    </div>
+    <div class="stat-tegel" onclick="filterTegel('regio','noord',this)">
+      <div class="getal">5</div>
+      <div class="label">Noord</div>
+    </div>
+    <div class="stat-tegel" onclick="filterTegel('regio','midden',this)">
+      <div class="getal">10</div>
+      <div class="label">Midden</div>
+    </div>
+    <div class="stat-tegel" onclick="filterTegel('regio','zuid',this)">
+      <div class="getal">2</div>
+      <div class="label">Zuid</div>
+    </div>
+    <div class="stat-tegel" onclick="filterTegel('kans','hoog',this)">
+      <div class="getal">11</div>
+      <div class="label">Hoge kans</div>
+    </div>
+    <div class="stat-tegel" onclick="filterTegel('urgentie','actie',this)">
+      <div class="getal">2</div>
+      <div class="label">Actie</div>
+    </div>
+    <div class="stat-tegel" onclick="filterTegel('nieuw','true',this)">
+      <div class="getal">3</div>
+      <div class="label">Nieuw</div>
+    </div>
+  </div>
+
+  <div class="zoekbalk">
+    <div class="zoek-veld">
+      <div class="zoek-label">Hoofdaannemer</div>
+      <div class="zoek-input-wrap">
+        <input type="text" id="zoek-aannemer" list="aannemer-lijst" placeholder="Typ om te zoeken..." autocomplete="off"
+          style="border:1px solid #e2e8f0;border-radius:6px;padding:8px 36px 8px 12px;font-size:14px;width:100%;outline:none;">
+        <datalist id="aannemer-lijst">
+          <option value="BAM Bouw & Techniek">
+          <option value="Dura Vermeer Bouw en Vastgoed Hengelo">
+          <option value="ERA Contour">
+          <option value="KBK Bouw">
+          <option value="Pellikaan Bouw">
+          <option value="Trebbe Bouw">
+          <option value="VDL De Meeuw">
+          <option value="Van der Meer Bouwbedrijf">
+        </datalist>
+        <button class="wis-btn" id="wis-aannemer" title="Wis filter">&#x2715;</button>
+      </div>
+    </div>
+    <div class="zoek-veld">
+      <div class="zoek-label">Type deur</div>
+      <div class="zoek-input-wrap">
+
+          <select id="filter-deurtype" style="border:1px solid #e2e8f0;border-radius:6px;padding:8px 12px;font-size:14px;width:100%;outline:none;background:#fff;">
+            <option value="">Alle deurtypen</option>
+            <optgroup label="Brandwerendheid">
+              <option value="ei30">EI30</option>
+              <option value="ei60">EI60</option>
+              <option value="ei120">EI120</option>
+            </optgroup>
+            <optgroup label="Constructie">
+              <option value="opdek">Opdek</option>
+              <option value="stomp">Stompe deuren</option>
+              <option value="massief">Massief hout</option>
+              <option value="hol">Holle kern</option>
+              <option value="mdf">MDF</option>
+            </optgroup>
+            <optgroup label="Inbraakwerendheid">
+              <option value="rc2">RC2</option>
+              <option value="rc3">RC3</option>
+            </optgroup>
+            <optgroup label="Afwerking">
+              <option value="hpl">HPL bekleding</option>
+              <option value="lakwerk">Lakwerk</option>
+              <option value="fineer">Fineer</option>
+              <option value="folie">Folie</option>
+            </optgroup>
+            <optgroup label="Toepassing">
+              <option value="woningdeuren">Woningdeuren</option>
+              <option value="kantoordeuren">Kantoordeuren</option>
+              <option value="zorgdeuren">Zorgdeuren</option>
+              <option value="schooldeuren">Schooldeuren</option>
+              <option value="hoteldeuren">Hoteldeuren</option>
+            </optgroup>
+          </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="sectie-titel">Nieuwe Projecten &mdash; Week 20</div>
   
-</header>
-<section style="margin:24px auto;max-width:1200px;padding:0 24px;">
-  <h2 style="font-size:14px;text-transform:uppercase;color:#718096;letter-spacing:1px;margin-bottom:12px;">Samenvatting week 20</h2>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;">
-    <div class="stat-tegel" onclick="filterProjecten(null,null,this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">3</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Totaal projecten</div>
+  <div class="regio-sectie" id="regio-midden">
+    <div class="regio-titel">Midden</div>
+    <div class="kaarten-grid">
+    <div class="kaart-wrapper">
+      <div class="projectkaart"
+           data-regio="midden"
+           data-urgentie="monitoren"
+           data-kans="hoog"
+           data-nieuw="true"
+           data-aannemer="onbekend"
+           data-deurtype="ei60 rc2 hpl zorgdeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Nieuwbouw Verpleeghuis Bernardus Sassenheim</div>
+            <div class="kaart-sub">Sassenheim (Zuid-Holland) &nbsp;·&nbsp; Nieuwbouw</div>
+          </div>
+          <div class="kaart-badges">
+            <span class="badge badge-nieuw">NIEUW</span>
+            <span class="badge urgentie-monitoren">MONITOREN</span>
+          </div>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren" title="Kans 5/5">★★★★★</span>
+          <span class="kaart-meta-item">Kans 5/5</span>
+          <span class="kaart-meta-item">Planfase</span>
+          <span class="kaart-meta-item">W20</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Aannemer</div>
+          <div>onbekend (aanbesteding 2027)</div>
+          <div class='kaart-contact'><strong>Marente – vastgoedteam Bernardus</strong> &nbsp;·&nbsp; <a href='tel:0252-220200'>0252-220200</a> &nbsp;·&nbsp; <a href='mailto:info@marente.nl'>info@marente.nl</a></div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Architect</div>
+          <div>Buro Kade</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Timing &amp; Waarde</div>
+          <div>Start: 2028 &nbsp;|&nbsp; Oplevering: 2030</div>
+          <div style="margin-top:3px;color:#718096">onbekend</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Vergunning</div>
+          <div>Onbekend</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Deurspecificaties</div>
+          <div>ca. 250 &nbsp;|&nbsp; zorgdeuren hout brandwerend (160 verpleegplaatsen)</div>
+          <div class='spec-tags'><span class="spec-tag">EI60</span><span class="spec-tag">RC2</span><span class="spec-tag">Rw ≥ 32 dB</span></div>
+          <div style='font-size:12px;color:#718096;margin-top:4px'>Afwerking: HPL hygiënisch / polyester</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">Q3 2027</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status  W21</div>
+          <div class="status-tekst">Aangepast voorlopig ontwerp gepresenteerd (maart 2026): gebouw compacter en dichter bij rooilijn Hoofdstraat. Omgevingsvergunningaanvraag bijgesteld naar januari 2027 (later dan eerder verwacht). Aanbesteding bouw volgt na vergunningverlening (verwacht 2027). Buro Kade rondt definitief ontwerp af.</div>
+        </div>
+        <div class="kaart-footer">
+          <a href="https://marente.nl/nieuws/nieuwbouw-bernardus-bouwen-aan-zorg-voor-de-toekomst" target="_blank" class="bron-link">Bron &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart"
+           data-regio="midden"
+           data-urgentie="actie"
+           data-kans="hoog"
+           data-nieuw="true"
+           data-aannemer="pellikaan-bouw"
+           data-deurtype="ei30 rc2 hpl schooldeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Schoolgebouw Park Vredenburgh Waddinxveen</div>
+            <div class="kaart-sub">Waddinxveen (Zuid-Holland) &nbsp;·&nbsp; Nieuwbouw</div>
+          </div>
+          <div class="kaart-badges">
+            <span class="badge badge-nieuw">NIEUW</span>
+            <span class="badge urgentie-actie">ACTIE</span>
+          </div>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren" title="Kans 4/5">★★★★☆</span>
+          <span class="kaart-meta-item">Kans 4/5</span>
+          <span class="kaart-meta-item">Gegund</span>
+          <span class="kaart-meta-item">W20</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Aannemer</div>
+          <div>Pellikaan Bouw</div>
+          <div class='kaart-contact'><strong>Pellikaan Bouw – projectcoördinator Park Vredenburgh</strong> &nbsp;·&nbsp; <a href='tel:030-6985959'>030-6985959</a> &nbsp;·&nbsp; <a href='mailto:info@pellikaan.nl'>info@pellikaan.nl</a></div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Architect</div>
+          <div>Spring Architecten</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Timing &amp; Waarde</div>
+          <div>Start: Q1 2026 &nbsp;|&nbsp; Oplevering: augustus 2026</div>
+          <div style="margin-top:3px;color:#718096">ca. €5.500.000</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Vergunning</div>
+          <div>Verleend</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Deurspecificaties</div>
+          <div>ca. 70 &nbsp;|&nbsp; binnendeuren hout basisschool (MFA)</div>
+          <div class='spec-tags'><span class="spec-tag">EI30</span><span class="spec-tag">RC2 (buitendeuren)</span><span class="spec-tag">Rw ≥ 28 dB</span></div>
+          <div style='font-size:12px;color:#718096;margin-top:4px'>Afwerking: HPL kleur</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">juni 2026</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status  W21</div>
+          <div class="status-tekst">Bouw volop in uitvoering. Architect BEVESTIGD: Spring Architecten (MFA Vredenburgh). Complex: 18 klassen CBS TOV + kinderopvang Partou + 1000m² maatschappelijke ruimte. Oplevering augustus 2026 staat vast. KRITIEK: beslismoment deuren JUNI 2026 — bel Pellikaan direct. Kansenscore verhoogd naar 4.</div>
+        </div>
+        <div class="kaart-footer">
+          <a href="https://www.waddinxveen.nl/wonen-en-bouwen/overzicht-nieuwbouwprojecten/woningen-nieuwe-school-en-kinderopvang-in-park-vredenburgh/" target="_blank" class="bron-link">Bron &rarr;</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="regio-sectie" id="regio-zuid">
+    <div class="regio-titel">Zuid</div>
+    <div class="kaarten-grid">
+    <div class="kaart-wrapper">
+      <div class="projectkaart"
+           data-regio="zuid"
+           data-urgentie="opvolgen"
+           data-kans="hoog"
+           data-nieuw="true"
+           data-aannemer="onbekend"
+           data-deurtype="ei30 rc2 woningdeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Groot Onderhoud Deuren & Kozijnen Wonen Limburg</div>
+            <div class="kaart-sub">Roermond (Limburg) &nbsp;·&nbsp; Renovatie</div>
+          </div>
+          <div class="kaart-badges">
+            <span class="badge badge-nieuw">NIEUW</span>
+            <span class="badge urgentie-opvolgen">OPVOLGEN</span>
+          </div>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren" title="Kans 4/5">★★★★☆</span>
+          <span class="kaart-meta-item">Kans 4/5</span>
+          <span class="kaart-meta-item">Aanbesteding</span>
+          <span class="kaart-meta-item">W20</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Aannemer</div>
+          <div>onbekend (aanbesteding lopende)</div>
+          <div class='kaart-contact'><strong>Wonen Limburg – Inkoop & Aanbestedingen</strong> &nbsp;·&nbsp; <a href='tel:0475-396800'>0475-396800</a> &nbsp;·&nbsp; <a href='mailto:inkoop@wonenlimburg.nl'>inkoop@wonenlimburg.nl</a></div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Architect</div>
+          <div>n.v.t.</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Timing &amp; Waarde</div>
+          <div>Start: Q3 2026 &nbsp;|&nbsp; Oplevering: Q4 2027</div>
+          <div style="margin-top:3px;color:#718096">ca. €6.500.000</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Vergunning</div>
+          <div>Onbekend</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Deurspecificaties</div>
+          <div>ca. 800+ &nbsp;|&nbsp; voor- en tussendeuren hout renovatie corporatiewoningen</div>
+          <div class='spec-tags'><span class="spec-tag">EI30</span><span class="spec-tag">RC2</span><span class="spec-tag">Rw ≥ 25 dB</span></div>
+          <div style='font-size:12px;color:#718096;margin-top:4px'>Afwerking: geschilderd wit of kleur</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">juli 2026</div>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status  W21</div>
+          <div class="status-tekst">Geen nieuwe publicatie gevonden deze week. Aanbesteding lopende op Mercell-platform. Gunning verwacht juli 2026. Neem direct contact op via inkoop@wonenlimburg.nl.</div>
+        </div>
+        <div class="kaart-footer">
+          <a href="https://www.wonenlimburg.nl/" target="_blank" class="bron-link">Bron &rarr;</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="sectie-titel">Dashboard &mdash; Top 5 Actieve Projecten</div>
+  <div class="dashboard">
+    <div class="dashboard-titel">Top 5 hoogste kans &amp; vroegste beslismoment</div>
+    <div class="dashboard-lijst">
+      
+        <div class="dashboard-kaart">
+          <div class="dashboard-naam">1. Renovatie Huis voor de Provincie Utrecht</div>
+          <div class="dashboard-meta">Utrecht (Utrecht) &nbsp;·&nbsp; W19 &nbsp;·&nbsp;
+            <span class="badge urgentie-opvolgen">OPVOLGEN</span>
+            &nbsp;·&nbsp; ★★★★★ 5/5</div>
+          <div class="dashboard-meta" style="margin-top:4px">Aannemer: onbekend (aanbesteding na zomer 2026)</div>
+          <div class="dashboard-meta">Contact: Provincie Utrecht – Facilitaire Zaken &nbsp;·&nbsp; 030-2589111</div>
+          <div class="dashboard-beslismoment">&#9200; Q3 2026 (aanbestedingsdocumenten)</div>
+          <div class="dashboard-meta" style="margin-top:6px;font-style:italic;font-size:11px">Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026 — deurspecificaties worden onderdeel va…</div>
+          <a href="week-19-2026.html" class="bron-link" style="display:inline-block;margin-top:8px">&#8594; Weekrapport W19</a>
+        </div>
+        <div class="dashboard-kaart">
+          <div class="dashboard-naam">2. Voormekaar Hoogveen Den Haag Zuidwest</div>
+          <div class="dashboard-meta">Den Haag (Zuid-Holland) &nbsp;·&nbsp; W18 &nbsp;·&nbsp;
+            <span class="badge urgentie-monitoren">MONITOREN</span>
+            &nbsp;·&nbsp; ★★★★★ 5/5</div>
+          <div class="dashboard-meta" style="margin-top:4px">Aannemer: ERA Contour</div>
+          <div class="dashboard-meta">Contact: ERA Contour – projectontwikkeling Hoogveen &nbsp;·&nbsp; 010-2174700</div>
+          <div class="dashboard-beslismoment">&#9200; Q2 2027</div>
+          <div class="dashboard-meta" style="margin-top:6px;font-style:italic;font-size:11px">ERA Contour bevestigd als winnaar (persbericht april 2026). Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningproce…</div>
+          <a href="week-18-2026.html" class="bron-link" style="display:inline-block;margin-top:8px">&#8594; Weekrapport W18</a>
+        </div>
+        <div class="dashboard-kaart">
+          <div class="dashboard-naam">3. Nieuwbouw Verpleeghuis Bernardus Sassenheim</div>
+          <div class="dashboard-meta">Sassenheim (Zuid-Holland) &nbsp;·&nbsp; W20 &nbsp;·&nbsp;
+            <span class="badge urgentie-monitoren">MONITOREN</span>
+            &nbsp;·&nbsp; ★★★★★ 5/5</div>
+          <div class="dashboard-meta" style="margin-top:4px">Aannemer: onbekend (aanbesteding 2027)</div>
+          <div class="dashboard-meta">Contact: Marente – vastgoedteam Bernardus &nbsp;·&nbsp; 0252-220200</div>
+          <div class="dashboard-beslismoment">&#9200; Q3 2027</div>
+          <div class="dashboard-meta" style="margin-top:6px;font-style:italic;font-size:11px">Aangepast voorlopig ontwerp gepresenteerd (maart 2026): gebouw compacter en dichter bij rooilijn Hoofdstraat. Omgevingsvergunninga…</div>
+          <a href="week-20-2026.html" class="bron-link" style="display:inline-block;margin-top:8px">&#8594; Weekrapport W20</a>
+        </div>
+        <div class="dashboard-kaart">
+          <div class="dashboard-naam">4. Schoolgebouw Park Vredenburgh Waddinxveen</div>
+          <div class="dashboard-meta">Waddinxveen (Zuid-Holland) &nbsp;·&nbsp; W20 &nbsp;·&nbsp;
+            <span class="badge urgentie-actie">ACTIE</span>
+            &nbsp;·&nbsp; ★★★★☆ 4/5</div>
+          <div class="dashboard-meta" style="margin-top:4px">Aannemer: Pellikaan Bouw</div>
+          <div class="dashboard-meta">Contact: Pellikaan Bouw – projectcoördinator Park Vredenburgh &nbsp;·&nbsp; 030-6985959</div>
+          <div class="dashboard-beslismoment">&#9200; juni 2026</div>
+          <div class="dashboard-meta" style="margin-top:6px;font-style:italic;font-size:11px">Bouw volop in uitvoering. Architect BEVESTIGD: Spring Architecten (MFA Vredenburgh). Complex: 18 klassen CBS TOV + kinderopvang Pa…</div>
+          <a href="week-20-2026.html" class="bron-link" style="display:inline-block;margin-top:8px">&#8594; Weekrapport W20</a>
+        </div>
+        <div class="dashboard-kaart">
+          <div class="dashboard-naam">5. Groot Onderhoud Deuren & Kozijnen Wonen Limburg</div>
+          <div class="dashboard-meta">Roermond (Limburg) &nbsp;·&nbsp; W20 &nbsp;·&nbsp;
+            <span class="badge urgentie-opvolgen">OPVOLGEN</span>
+            &nbsp;·&nbsp; ★★★★☆ 4/5</div>
+          <div class="dashboard-meta" style="margin-top:4px">Aannemer: onbekend (aanbesteding lopende)</div>
+          <div class="dashboard-meta">Contact: Wonen Limburg – Inkoop & Aanbestedingen &nbsp;·&nbsp; 0475-396800</div>
+          <div class="dashboard-beslismoment">&#9200; juli 2026</div>
+          <div class="dashboard-meta" style="margin-top:6px;font-style:italic;font-size:11px">Geen nieuwe publicatie gevonden deze week. Aanbesteding lopende op Mercell-platform. Gunning verwacht juli 2026. Neem direct conta…</div>
+          <a href="week-20-2026.html" class="bron-link" style="display:inline-block;margin-top:8px">&#8594; Weekrapport W20</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="sectie-titel">Terugblik &mdash; Voortgang Lopende Projecten</div>
+  <div class="kaarten-grid">
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="midden"
+           data-urgentie="monitoren"
+           data-kans="hoog"
+           data-nieuw="false"
+           data-aannemer="era-contour"
+           data-deurtype="ei30 ei60 rc2 woningdeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Voormekaar Hoogveen Den Haag Zuidwest</div>
+            <div class="kaart-sub">Den Haag (Zuid-Holland) &nbsp;·&nbsp; Eerste publicatie W18</div>
+          </div>
+          <span class="badge urgentie-monitoren">MONITOREN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★★★</span>
+          <span class="kaart-meta-item">Kans 5/5</span>
+          <span class="kaart-meta-item">Planfase</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">Q2 2027</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30 (standaard) / EI60 (parkeerlaag)</span><span class="spec-tag">RC2</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>ERA Contour bevestigd als winnaar (persbericht april 2026). Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningprocedure loopt. Bouwstart verwacht 2027. Geen wijziging in score/urgentie.</p></div><div class="log-entry"><span class="log-week">Week 18 2026</span><p>ERA Contour wint tender voor 867 woningen in Den Haag Zuidwest (Hoogveen). Mix: 327 sociale huur + 180 middeldure huur + 360 koop. Architect: Kraaijvanger.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="midden"
+           data-urgentie="opvolgen"
+           data-kans="hoog"
+           data-nieuw="false"
+           data-aannemer="onbekend"
+           data-deurtype="ei60 ei120 rc3 kantoordeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Renovatie Huis voor de Provincie Utrecht</div>
+            <div class="kaart-sub">Utrecht (Utrecht) &nbsp;·&nbsp; Eerste publicatie W19</div>
+          </div>
+          <span class="badge urgentie-opvolgen">OPVOLGEN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★★★</span>
+          <span class="kaart-meta-item">Kans 5/5</span>
+          <span class="kaart-meta-item">Planfase</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">Q3 2026 (aanbestedingsdocumenten)</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI60 / EI120</span><span class="spec-tag">RC3</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026 — deurspecificaties worden onderdeel van aanbestedingsdocumenten (Q3 2026). Beslismoment bijgesteld naar Q3 2026. Urgentie verhoogd naar OPVOLGEN.</p></div><div class="log-entry"><span class="log-week">Week 19 2026</span><p>Renovatie- en verduurzamingsplannen (€101M) naar volgende fase. Definitief ontwerp gereed voor zomer 2026, aanbesteding start daarna.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="midden"
+           data-urgentie="monitoren"
+           data-kans="hoog"
+           data-nieuw="false"
+           data-aannemer="bam-bouw-techniek"
+           data-deurtype="ei30 ei60 rc2 woningdeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Treehouse Woontoren Rotterdam</div>
+            <div class="kaart-sub">Rotterdam (Zuid-Holland) &nbsp;·&nbsp; Eerste publicatie W17</div>
+          </div>
+          <span class="badge urgentie-monitoren">MONITOREN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★★☆</span>
+          <span class="kaart-meta-item">Kans 4/5</span>
+          <span class="kaart-meta-item">Gegund</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">april 2027</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30 (trappenhuizen) / EI60 (parkeerlaag)</span><span class="spec-tag">RC2 (voordeur appartement)</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>AANNEMER BEKEND: BAM Bouw & Techniek in opdracht van NLV (ProVast verkocht Tree House eind 2025 aan NLV, Dutch real estate investor). Vergunning onherroepelijk (Raad van State: alle bezwaren ongegrond). Bouwstart september 2026 bevestigd. Verkoop appartementen gestart mei 2026. Ca. 41.000 m² totaal (299 app. + 15.000 m² kantoor + retail + cultuur). Kansenscore verhoogd van 3 naar 4.</p></div><div class="log-entry"><span class="log-week">Week 17 2026</span><p>Aankondiging dat bouw van 130m hoge woontoren (299 app., 11e t/m 37e verdieping) definitief doorgaat. Bouwstart gepland september 2026. Aannemer nog niet geselecteerd.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="noord"
+           data-urgentie="opvolgen"
+           data-kans="hoog"
+           data-nieuw="false"
+           data-aannemer="onbekend"
+           data-deurtype="ei30 rc2 hpl schooldeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Kindcentrum De Middenstip Enter</div>
+            <div class="kaart-sub">Enter (Overijssel) &nbsp;·&nbsp; Eerste publicatie W18</div>
+          </div>
+          <span class="badge urgentie-opvolgen">OPVOLGEN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★★☆</span>
+          <span class="kaart-meta-item">Kans 4/5</span>
+          <span class="kaart-meta-item">Aanbesteding</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">augustus 2026</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30</span><span class="spec-tag">RC2 (hoofdingang)</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>Bestemmingsplanwijziging onherroepelijk: geen bezwaren. Architect BEKEND: IAA Architecten won de architectenselectie. Aanbesteding bouwkundig werk lopende. Gunning verwacht zomer 2026. Kansenscore verhoogd van 3 naar 4.</p></div><div class="log-entry"><span class="log-week">Week 18 2026</span><p>Europese aanbesteding gepubliceerd voor realisatie Kindcentrum De Middenstip (ca. 3800 m² bvo). Gunning verwacht zomer 2026.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="noord"
+           data-urgentie="monitoren"
+           data-kans="hoog"
+           data-nieuw="false"
+           data-aannemer="onbekend"
+           data-deurtype="ei30 ei60 rc2 woningdeuren" style="border-left:4px solid #38a169">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Stadshavens Groningen fase 1 (VanWonen)</div>
+            <div class="kaart-sub">Groningen (Groningen) &nbsp;·&nbsp; Eerste publicatie W19</div>
+          </div>
+          <span class="badge urgentie-monitoren">MONITOREN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★★☆</span>
+          <span class="kaart-meta-item">Kans 4/5</span>
+          <span class="kaart-meta-item">Planfase</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">Q3 2027</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30 / EI60</span><span class="spec-tag">RC2</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>VanWonen bevestigt bouwstart 300 woningen (sociale huur + koop) in 2026. Omgevingsvergunning onherroepelijk (geen beroep ingediend). V.a. mei 2026: kabels en nutsleidingen in waterfront Eemskanaal. Architecten bekend: ANA Architects (parkeergebouw + blok 1), Koschuch Architects (blok 6 sociale huur + blok 7 koop). Verkoop appartementen start najaar 2026. Aannemer woningbouw wordt H2 2026 geselecteerd.</p></div><div class="log-entry"><span class="log-week">Week 19 2026</span><p>Woonwensenvraag gestart voor eerste woongebouwen in Stadshavens Groningen (fase 1: ca. 300 woningen door VanWonen langs Eemskanaal). Totaalproject: 3300 woningen.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="noord"
+           data-urgentie="actie"
+           data-kans="laag"
+           data-nieuw="false"
+           data-aannemer="trebbe-bouw"
+           data-deurtype="ei30 rc2 woningdeuren">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">CLT Woongebouw Couchette 1A Grunobuurt</div>
+            <div class="kaart-sub">Groningen (Groningen) &nbsp;·&nbsp; Eerste publicatie W17</div>
+          </div>
+          <span class="badge urgentie-actie">ACTIE</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★☆☆</span>
+          <span class="kaart-meta-item">Kans 3/5</span>
+          <span class="kaart-meta-item">Gegund</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">juni 2026</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30</span><span class="spec-tag">RC2</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>Couchette 1B (29 woningen) opgeleverd en eerste bewoners welkom per 1 mei 2026. Couchette 1A (82 woningen) volop in aanbouw: kelderverdieping en liftschacht in uitvoering (mei 2026), hoogste punt verwacht eind 2026. Bouwteam CLT-constructie (hout). Beslismoment deuren 1A: JUNI 2026 — DIRECT CONTACT OPNEMEN MET TREBBE BOUW.</p></div><div class="log-entry"><span class="log-week">Week 17 2026</span><p>Couchette 1A (82 sociale/middenhuurwoningen, CLT-bouw) in aanbouw door Trebbe voor Nijestee. Bouw gestart Q4 2025, oplevering verwacht zomer 2027. Deurbeslissing verwacht binnen 4 weken.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="noord"
+           data-urgentie="monitoren"
+           data-kans="laag"
+           data-nieuw="false"
+           data-aannemer="van-der-meer-bouwbedrijf"
+           data-deurtype="ei30 rc2 hpl schooldeuren">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">IKC De Gearrin Sint Nicolaasga</div>
+            <div class="kaart-sub">Sint Nicolaasga (Friesland) &nbsp;·&nbsp; Eerste publicatie W18</div>
+          </div>
+          <span class="badge urgentie-monitoren">MONITOREN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★★☆☆</span>
+          <span class="kaart-meta-item">Kans 3/5</span>
+          <span class="kaart-meta-item">Gegund</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">september 2026</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30</span><span class="spec-tag">RC2 (buitendeuren)</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>Sloop oud schoolgebouw De Paedwizer gestart week 18 (27 april). Leerlingen in tijdelijke huisvesting. Aannemers voor het nieuwe IKC zijn bekend bij gemeente De Fryske Marren (selectie afgerond). Informatiebijeenkomst voor omwonenden gepland mei 2026 (planning bouw, routes, veiligheid). Bouwstart vóór zomervakantie 2026. Oplevering eind 2026.</p></div><div class="log-entry"><span class="log-week">Week 18 2026</span><p>Aannemerskeuze: Van der Meer Bouwbedrijf (Sneek) realiseert nieuw IKC (ca. 3800 m² bvo). Bouwstart begin juni 2026 verwacht.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="midden"
+           data-urgentie="opvolgen"
+           data-kans="laag"
+           data-nieuw="false"
+           data-aannemer="vdl-de-meeuw"
+           data-deurtype="ei60 rc2 hpl mdf zorgdeuren">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Woonzorgcentrum Nijemonde</div>
+            <div class="kaart-sub">Nieuwegein (Utrecht) &nbsp;·&nbsp; Eerste publicatie W17</div>
+          </div>
+          <span class="badge urgentie-opvolgen">OPVOLGEN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★☆☆☆</span>
+          <span class="kaart-meta-item">Kans 2/5</span>
+          <span class="kaart-meta-item">Gegund</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">oktober 2026</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI60</span><span class="spec-tag">RC2</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>Bouwterrein afgezet april 2026. VDL De Meeuw gestart met grondwerk en funderingen. Omwonenden ondervonden hinder door ontbrekende alternatieve route; inmiddels opgelost. Beslismoment deuren verwacht september/oktober 2026.</p></div><div class="log-entry"><span class="log-week">Week 17 2026</span><p>Bouwstart gepubliceerd april 2026. VDL De Meeuw start met woonzorgcentrum voor ZorgSpectrum (90 wooneenheden, 6-7 verdiepingen). Oplevering verwacht medio 2027. Vergunning verleend.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="kaart-wrapper">
+      <div class="projectkaart projectkaart-terugblik"
+           data-regio="zuid"
+           data-urgentie="monitoren"
+           data-kans="laag"
+           data-nieuw="false"
+           data-aannemer="onbekend"
+           data-deurtype="ei30 rc2 woningdeuren">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">De Wijer Hapert fase 1</div>
+            <div class="kaart-sub">Hapert (Noord-Brabant) &nbsp;·&nbsp; Eerste publicatie W19</div>
+          </div>
+          <span class="badge urgentie-monitoren">MONITOREN</span>
+        </div>
+        <div class="kaart-row">
+          <span class="kans-sterren">★★☆☆☆</span>
+          <span class="kaart-meta-item">Kans 2/5</span>
+          <span class="kaart-meta-item">Gegund</span>
+        </div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Beslismoment deuren</div>
+          <div class="beslismoment">november 2026</div>
+        </div>
+        <div class='kaart-sectie'><div class='spec-tags'><span class="spec-tag">EI30 (brandoverdrachtdeuren)</span><span class="spec-tag">RC2 (voordeur)</span></div></div>
+        <div class="kaart-sectie">
+          <div class="kaart-label">Status log</div>
+          <div class="log-entry"><span class="log-week">Week 21 2026</span><p>Bouwstart fase 1 (42 woningen) bevestigd 10 mei 2026. Developer: Van Heugten Beheer. Uitvoerende aannemer nog niet publiek bekend. Contacteer Van Heugten Beheer voor doorverwijzing naar de bouwer.</p></div><div class="log-entry"><span class="log-week">Week 19 2026</span><p>Officiële bouwstart 10 mei 2026 voor fase 1 (123 woningen). Oplevering voorzien Q2 2027.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sectie-titel">Markttrends</div>
+  <div class="trends">
+    <div class="trends-grid">
+      <div>
+        <div class="trend-label">Meest gevraagd deurtype</div>
+        <div class="trend-waarde">RC2</div>
+        <div class="trend-sub">Op basis van 17 projecten</div>
+      </div>
+      <div>
+        <div class="trend-label">Dominante sector</div>
+        <div class="trend-waarde">Woning</div>
+        <div class="trend-sub">7 projecten</div>
+      </div>
+      <div>
+        <div class="trend-label">Sterkste regio</div>
+        <div class="trend-waarde">Midden</div>
+        <div class="trend-sub">10 projecten</div>
+      </div>
+      <div>
+        <div class="trend-label">Fabrikant</div>
+        <div class="trend-waarde">N.v.t.</div>
+        <div class="trend-sub">Nog niet gespecificeerd</div>
+      </div>
+    </div>
+  </div>
+
 </div>
-    <div class="stat-tegel" onclick="filterProjecten('regio','noord',this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">0</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Noord</div>
-</div>
-    <div class="stat-tegel" onclick="filterProjecten('regio','midden',this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">2</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Midden</div>
-</div>
-    <div class="stat-tegel" onclick="filterProjecten('regio','zuid',this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">1</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Zuid</div>
-</div>
-    <div class="stat-tegel" onclick="filterProjecten('kans','hoog',this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">3</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Hoge kans (4–5★)</div>
-</div>
-    <div class="stat-tegel" onclick="filterProjecten('urgentie','actie',this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">1</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Actie deze week</div>
-</div>
-    <div class="stat-tegel" onclick="filterProjecten('nieuw','true',this)" style="background:white;border-radius:8px;padding:16px 20px;text-align:center;cursor:pointer;flex:1;min-width:110px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:background 0.2s;">
-  <div style="font-size:28px;font-weight:700;color:#1a1a2e;">3</div>
-  <div style="font-size:12px;color:#718096;margin-top:4px;">Nieuw deze week</div>
-</div>
-  </div>
-</section>
-<section style="margin:0 auto;max-width:1200px;padding:0 24px;">
-  <h2 style="font-size:20px;color:#1a1a2e;margin:32px 0 16px 0;border-bottom:2px solid #e2e8f0;padding-bottom:8px;">Nieuwe Projecten — Week 20</h2>
-  
-  <section class="regio-sectie" id="regio-midden" style="margin-bottom:32px;">
-  <h3 style="font-size:14px;text-transform:uppercase;color:#805ad5;letter-spacing:1px;border-bottom:2px solid #805ad5;padding-bottom:8px;margin-bottom:16px;">Regio Midden</h3>
-  <div class="kaart-wrapper" style="margin-bottom:16px;">
-  <div class="projectkaart" data-regio="midden" data-urgentie="monitoren" data-kans="hoog" data-nieuw="true"
-       style="background:white;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-      <div>
-        <h3 style="margin:0 0 4px 0;font-size:18px;color:#1a1a2e;">Nieuwbouw Verpleeghuis Bernardus Sassenheim<span style="background:#bee3f8;color:#2b6cb0;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:8px;font-weight:600;">NIEUW</span></h3>
-        <div style="color:#718096;font-size:13px;">Sassenheim (Zuid-Holland)<span style="background:#3182ce;color:white;padding:2px 8px;border-radius:12px;font-size:11px;margin-left:8px;">NIEUWBOUW</span></div>
-      </div>
-      <div style="text-align:right;">
-        <span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span>
-        <div style="margin-top:6px;font-size:20px;color:#f6ad55;letter-spacing:2px;">★★★★★</div>
-        <div style="font-size:11px;color:#718096;">Kansenscore 5/5</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Fase</div>
-        <div style="font-weight:600;">PLANFASE</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Projectwaarde</div>
-        <div style="font-weight:600;">onbekend</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Hoofdaannemer</div>
-        <div>onbekend (aanbesteding 2027)</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Architect</div>
-        <div>Buro Kade</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Contactpersoon</div>
-        <div><b>Marente – vastgoedteam Bernardus</b> · <a href="mailto:info@marente.nl" style="color:#3182ce;">info@marente.nl</a> · 0252-220200</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Omgevingsvergunning</div>
-        <div>onbekend</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Start / Oplevering</div>
-        <div>2028 / 2030</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Beslismoment deuren</div>
-        <div style="font-weight:600;color:#c05621;">Q3 2027</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;">
-      <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Deurspecificaties</div>
-      <div style="margin-top:8px;"><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Aantal:</b> ca. 250</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Type:</b> zorgdeuren hout brandwerend (160 verpleegplaatsen)</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Brandwerendheid:</b> EI60</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Akoestiek:</b> Rw ≥ 32 dB</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Inbraakwerende:</b> RC2</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Afwerking:</b> HPL hygiënisch / polyester</span></div>
-    </div>
-    
-    <div style="margin-top:12px;background:#f7fafc;border-radius:6px;padding:10px;font-size:13px;">
-      <span style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Huidige status</span><br>
-      <i>Week 21/2026:</i> Aangepast voorlopig ontwerp gepresenteerd (maart 2026): gebouw compacter en dichter bij rooilijn Hoofdstraat. Omgevingsvergunningaanvraag bijgesteld naar januari 2027 (later dan eerder verwacht). Aanbesteding bouw volgt na vergunningverlening (verwacht 2027). Buro Kade rondt definitief ontwerp af.
-    </div>
-    <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-      <a href="https://marente.nl/nieuws/nieuwbouw-bernardus-bouwen-aan-zorg-voor-de-toekomst" target="_blank" style="color:#3182ce;font-size:13px;text-decoration:none;">🔗 Bekijk bronpublicatie →</a>
-      <span style="font-size:13px;color:#718096;font-style:italic;">Status opvolging: <b>— (zelf in te vullen)</b></span>
-    </div>
-  </div>
-</div><div class="kaart-wrapper" style="margin-bottom:16px;">
-  <div class="projectkaart" data-regio="midden" data-urgentie="actie" data-kans="hoog" data-nieuw="true"
-       style="background:white;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-      <div>
-        <h3 style="margin:0 0 4px 0;font-size:18px;color:#1a1a2e;">Schoolgebouw Park Vredenburgh Waddinxveen<span style="background:#bee3f8;color:#2b6cb0;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:8px;font-weight:600;">NIEUW</span></h3>
-        <div style="color:#718096;font-size:13px;">Waddinxveen (Zuid-Holland)<span style="background:#3182ce;color:white;padding:2px 8px;border-radius:12px;font-size:11px;margin-left:8px;">NIEUWBOUW</span></div>
-      </div>
-      <div style="text-align:right;">
-        <span style="background:#e53e3e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">ACTIE DEZE WEEK</span>
-        <div style="margin-top:6px;font-size:20px;color:#f6ad55;letter-spacing:2px;">★★★★☆</div>
-        <div style="font-size:11px;color:#718096;">Kansenscore 4/5</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Fase</div>
-        <div style="font-weight:600;">GEGUND</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Projectwaarde</div>
-        <div style="font-weight:600;">ca. €5.500.000</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Hoofdaannemer</div>
-        <div>Pellikaan Bouw</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Architect</div>
-        <div>Spring Architecten</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Contactpersoon</div>
-        <div><b>Pellikaan Bouw – projectcoördinator Park Vredenburgh</b> · <a href="mailto:info@pellikaan.nl" style="color:#3182ce;">info@pellikaan.nl</a> · 030-6985959</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Omgevingsvergunning</div>
-        <div>verleend</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Start / Oplevering</div>
-        <div>Q1 2026 / augustus 2026</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Beslismoment deuren</div>
-        <div style="font-weight:600;color:#c05621;">juni 2026</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;">
-      <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Deurspecificaties</div>
-      <div style="margin-top:8px;"><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Aantal:</b> ca. 70</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Type:</b> binnendeuren hout basisschool (MFA)</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Brandwerendheid:</b> EI30</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Akoestiek:</b> Rw ≥ 28 dB</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Inbraakwerende:</b> RC2 (buitendeuren)</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Afwerking:</b> HPL kleur</span></div>
-    </div>
-    
-    <div style="margin-top:12px;background:#f7fafc;border-radius:6px;padding:10px;font-size:13px;">
-      <span style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Huidige status</span><br>
-      <i>Week 21/2026:</i> Bouw volop in uitvoering. Architect BEVESTIGD: Spring Architecten (MFA Vredenburgh). Complex: 18 klassen CBS TOV + kinderopvang Partou + 1000m² maatschappelijke ruimte. Oplevering augustus 2026 staat vast. KRITIEK: beslismoment deuren JUNI 2026 — bel Pellikaan direct. Kansenscore verhoogd naar 4.
-    </div>
-    <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-      <a href="https://www.waddinxveen.nl/wonen-en-bouwen/overzicht-nieuwbouwprojecten/woningen-nieuwe-school-en-kinderopvang-in-park-vredenburgh/" target="_blank" style="color:#3182ce;font-size:13px;text-decoration:none;">🔗 Bekijk bronpublicatie →</a>
-      <span style="font-size:13px;color:#718096;font-style:italic;">Status opvolging: <b>— (zelf in te vullen)</b></span>
-    </div>
-  </div>
-</div>
-</section>
-  <section class="regio-sectie" id="regio-zuid" style="margin-bottom:32px;">
-  <h3 style="font-size:14px;text-transform:uppercase;color:#e53e3e;letter-spacing:1px;border-bottom:2px solid #e53e3e;padding-bottom:8px;margin-bottom:16px;">Regio Zuid</h3>
-  <div class="kaart-wrapper" style="margin-bottom:16px;">
-  <div class="projectkaart" data-regio="zuid" data-urgentie="opvolgen" data-kans="hoog" data-nieuw="true"
-       style="background:white;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-      <div>
-        <h3 style="margin:0 0 4px 0;font-size:18px;color:#1a1a2e;">Groot Onderhoud Deuren & Kozijnen Wonen Limburg<span style="background:#bee3f8;color:#2b6cb0;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:8px;font-weight:600;">NIEUW</span></h3>
-        <div style="color:#718096;font-size:13px;">Roermond (Limburg)<span style="background:#dd6b20;color:white;padding:2px 8px;border-radius:12px;font-size:11px;margin-left:8px;">RENOVATIE</span></div>
-      </div>
-      <div style="text-align:right;">
-        <span style="background:#dd6b20;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">OPVOLGEN</span>
-        <div style="margin-top:6px;font-size:20px;color:#f6ad55;letter-spacing:2px;">★★★★☆</div>
-        <div style="font-size:11px;color:#718096;">Kansenscore 4/5</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Fase</div>
-        <div style="font-weight:600;">AANBESTEDING</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Projectwaarde</div>
-        <div style="font-weight:600;">ca. €6.500.000</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Hoofdaannemer</div>
-        <div>onbekend (aanbesteding lopende)</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Architect</div>
-        <div>n.v.t.</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Contactpersoon</div>
-        <div><b>Wonen Limburg – Inkoop & Aanbestedingen</b> · <a href="mailto:inkoop@wonenlimburg.nl" style="color:#3182ce;">inkoop@wonenlimburg.nl</a> · 0475-396800</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Omgevingsvergunning</div>
-        <div>onbekend</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Start / Oplevering</div>
-        <div>Q3 2026 / Q4 2027</div>
-      </div>
-      <div>
-        <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Beslismoment deuren</div>
-        <div style="font-weight:600;color:#c05621;">juli 2026</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;">
-      <div style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Deurspecificaties</div>
-      <div style="margin-top:8px;"><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Aantal:</b> ca. 800+</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Type:</b> voor- en tussendeuren hout renovatie corporatiewoningen</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Brandwerendheid:</b> EI30</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Akoestiek:</b> Rw ≥ 25 dB</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Inbraakwerende:</b> RC2</span><span style="background:#c6f6d5;color:#276749;padding:2px 8px;border-radius:10px;font-size:12px;margin:2px;display:inline-block;"><b>Afwerking:</b> geschilderd wit of kleur</span></div>
-    </div>
-    
-    <div style="margin-top:12px;background:#f7fafc;border-radius:6px;padding:10px;font-size:13px;">
-      <span style="color:#718096;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Huidige status</span><br>
-      <i>Week 21/2026:</i> Geen nieuwe publicatie gevonden deze week. Aanbesteding lopende op Mercell-platform. Gunning verwacht juli 2026. Neem direct contact op via inkoop@wonenlimburg.nl.
-    </div>
-    <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-      <a href="https://www.wonenlimburg.nl/" target="_blank" style="color:#3182ce;font-size:13px;text-decoration:none;">🔗 Bekijk bronpublicatie →</a>
-      <span style="font-size:13px;color:#718096;font-style:italic;">Status opvolging: <b>— (zelf in te vullen)</b></span>
-    </div>
-  </div>
-</div>
-</section>
-</section>
-<section style="margin:32px auto;max-width:1200px;padding:0 24px;">
-  <div style="background:#fffbeb;border:2px solid #f6ad55;border-radius:12px;padding:24px;">
-    <h2 style="font-size:20px;color:#744210;margin:0 0 20px 0;">Dashboard — Meest Kansrijke Projecten</h2>
-    <div style="background:white;border-radius:8px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <h4 style="margin:0 0 4px 0;color:#1a1a2e;font-size:16px;">Voormekaar Hoogveen Den Haag Zuidwest</h4>
-      <div style="color:#718096;font-size:13px;">Den Haag (Zuid-Holland) · <a href="week-18-2026.html" style="color:#3182ce;">Uit week 18 — 2026</a></div>
-    </div>
-    <div style="text-align:right;"><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span><br><span style="font-size:18px;color:#f6ad55;">★★★★★</span></div>
-  </div>
-  <div style="margin-top:10px;font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-    <div><span style="color:#718096;font-size:11px;">AANNEMER</span><br>ERA Contour</div>
-    <div><span style="color:#718096;font-size:11px;">BESLISMOMENT</span><br><b style="color:#c05621;">Q2 2027</b></div>
-  </div>
-  <div style="margin-top:10px;background:#fffbeb;border-radius:6px;padding:8px;font-size:12px;color:#744210;">ERA Contour bevestigd als winnaar (persbericht april 2026). Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningprocedure loopt. Bouwstart verwacht 2027. Geen wijziging in score/urgentie.</div>
-  <div style="margin-top:10px;"><a href="week-18-2026.html" style="color:#3182ce;font-size:13px;">Bekijk volledig project →</a></div>
-</div><div style="background:white;border-radius:8px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <h4 style="margin:0 0 4px 0;color:#1a1a2e;font-size:16px;">Renovatie Huis voor de Provincie Utrecht</h4>
-      <div style="color:#718096;font-size:13px;">Utrecht (Utrecht) · <a href="week-19-2026.html" style="color:#3182ce;">Uit week 19 — 2026</a></div>
-    </div>
-    <div style="text-align:right;"><span style="background:#dd6b20;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">OPVOLGEN</span><br><span style="font-size:18px;color:#f6ad55;">★★★★★</span></div>
-  </div>
-  <div style="margin-top:10px;font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-    <div><span style="color:#718096;font-size:11px;">AANNEMER</span><br>onbekend (aanbesteding na zomer 2026)</div>
-    <div><span style="color:#718096;font-size:11px;">BESLISMOMENT</span><br><b style="color:#c05621;">Q3 2026 (aanbestedingsdocumenten)</b></div>
-  </div>
-  <div style="margin-top:10px;background:#fffbeb;border-radius:6px;padding:8px;font-size:12px;color:#744210;">Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026 — deurspecificaties worden onderdeel van aanbestedingsdocumenten (Q3 2026). Beslismoment bijgesteld naar Q3 2026. Urgentie verhoogd naar OPVOLGEN.</div>
-  <div style="margin-top:10px;"><a href="week-19-2026.html" style="color:#3182ce;font-size:13px;">Bekijk volledig project →</a></div>
-</div><div style="background:white;border-radius:8px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <h4 style="margin:0 0 4px 0;color:#1a1a2e;font-size:16px;">Nieuwbouw Verpleeghuis Bernardus Sassenheim</h4>
-      <div style="color:#718096;font-size:13px;">Sassenheim (Zuid-Holland) · <a href="week-20-2026.html" style="color:#3182ce;">Uit week 20 — 2026</a></div>
-    </div>
-    <div style="text-align:right;"><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span><br><span style="font-size:18px;color:#f6ad55;">★★★★★</span></div>
-  </div>
-  <div style="margin-top:10px;font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-    <div><span style="color:#718096;font-size:11px;">AANNEMER</span><br>onbekend (aanbesteding 2027)</div>
-    <div><span style="color:#718096;font-size:11px;">BESLISMOMENT</span><br><b style="color:#c05621;">Q3 2027</b></div>
-  </div>
-  <div style="margin-top:10px;background:#fffbeb;border-radius:6px;padding:8px;font-size:12px;color:#744210;">Aangepast voorlopig ontwerp gepresenteerd (maart 2026): gebouw compacter en dichter bij rooilijn Hoofdstraat. Omgevingsvergunningaanvraag bijgesteld naar januari 2027 (later dan eerder verwacht). Aanbesteding bouw volgt na vergunningverlening (verwacht 2027). Buro Kade rondt definitief ontwerp af.</div>
-  <div style="margin-top:10px;"><a href="week-20-2026.html" style="color:#3182ce;font-size:13px;">Bekijk volledig project →</a></div>
-</div><div style="background:white;border-radius:8px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <h4 style="margin:0 0 4px 0;color:#1a1a2e;font-size:16px;">Geuzenpark Hilversum (233 woningen transformatie)</h4>
-      <div style="color:#718096;font-size:13px;">Hilversum (Noord-Holland) · <a href="week-21-2026.html" style="color:#3182ce;">Uit week 21 — 2026</a></div>
-    </div>
-    <div style="text-align:right;"><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span><br><span style="font-size:18px;color:#f6ad55;">★★★★☆</span></div>
-  </div>
-  <div style="margin-top:10px;font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-    <div><span style="color:#718096;font-size:11px;">AANNEMER</span><br>onbekend (aanbesteding 2027)</div>
-    <div><span style="color:#718096;font-size:11px;">BESLISMOMENT</span><br><b style="color:#c05621;">Q2 2028</b></div>
-  </div>
-  <div style="margin-top:10px;background:#fffbeb;border-radius:6px;padding:8px;font-size:12px;color:#744210;">Eerste publicatie. Anterieure overeenkomst getekend (maart 2026) door gemeente Hilversum en Prosper Vitae voor transformatie voormalig bedrijventerrein naar 233 woningen + 1500 m² commercieel. Fase 1: 6 gebouwen. Sloop na zomer 2026, infra Q4 2026, eerste woningen medio 2029. SVn Transformatiefaciliteit betrokken.</div>
-  <div style="margin-top:10px;"><a href="week-21-2026.html" style="color:#3182ce;font-size:13px;">Bekijk volledig project →</a></div>
-</div><div style="background:white;border-radius:8px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left: 4px solid #38a169;margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <h4 style="margin:0 0 4px 0;color:#1a1a2e;font-size:16px;">Stadshavens Groningen fase 1 (VanWonen)</h4>
-      <div style="color:#718096;font-size:13px;">Groningen (Groningen) · <a href="week-19-2026.html" style="color:#3182ce;">Uit week 19 — 2026</a></div>
-    </div>
-    <div style="text-align:right;"><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span><br><span style="font-size:18px;color:#f6ad55;">★★★★☆</span></div>
-  </div>
-  <div style="margin-top:10px;font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-    <div><span style="color:#718096;font-size:11px;">AANNEMER</span><br>onbekend (VanWonen selecteert aannemer 2026)</div>
-    <div><span style="color:#718096;font-size:11px;">BESLISMOMENT</span><br><b style="color:#c05621;">Q3 2027</b></div>
-  </div>
-  <div style="margin-top:10px;background:#fffbeb;border-radius:6px;padding:8px;font-size:12px;color:#744210;">VanWonen bevestigt bouwstart 300 woningen (sociale huur + koop) in 2026. Omgevingsvergunning onherroepelijk (geen beroep ingediend). V.a. mei 2026: kabels en nutsleidingen in waterfront Eemskanaal. Architecten bekend: ANA Architects (parkeergebouw + blok 1), Koschuch Architects (blok 6 sociale huur + blok 7 koop). Verkoop appartementen start najaar 2026. Aannemer woningbouw wordt H2 2026 geselecteerd.</div>
-  <div style="margin-top:10px;"><a href="week-19-2026.html" style="color:#3182ce;font-size:13px;">Bekijk volledig project →</a></div>
-</div>
-  </div>
-</section>
-<section style="margin:32px auto;max-width:1200px;padding:0 24px;">
-  <h2 style="font-size:20px;color:#1a1a2e;margin-bottom:16px;border-bottom:2px solid #e2e8f0;padding-bottom:8px;">Terugblik — Updates op Lopende Projecten</h2>
-  <div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #38a169;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">Voormekaar Hoogveen Den Haag Zuidwest</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Den Haag (Zuid-Holland)</span>
-      <a href="week-18-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 18</a>
-    </div>
-    <div><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span> <span style="font-size:14px;color:#f6ad55;">★★★★★</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> ERA Contour bevestigd als winnaar (persbericht april 2026). Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningprocedure loopt. Bouwstart verwacht 2027. Geen wijziging in score/urgentie.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #38a169;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">Renovatie Huis voor de Provincie Utrecht</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Utrecht (Utrecht)</span>
-      <a href="week-19-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 19</a>
-    </div>
-    <div><span style="background:#dd6b20;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">OPVOLGEN</span> <span style="font-size:14px;color:#f6ad55;">★★★★★</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026 — deurspecificaties worden onderdeel van aanbestedingsdocumenten (Q3 2026). Beslismoment bijgesteld naar Q3 2026. Urgentie verhoogd naar OPVOLGEN.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #38a169;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">Treehouse Woontoren Rotterdam</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Rotterdam (Zuid-Holland)</span>
-      <a href="week-17-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 17</a>
-    </div>
-    <div><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span> <span style="font-size:14px;color:#f6ad55;">★★★★☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> AANNEMER BEKEND: BAM Bouw & Techniek in opdracht van NLV (ProVast verkocht Tree House eind 2025 aan NLV, Dutch real estate investor). Vergunning onherroepelijk (Raad van State: alle bezwaren ongegrond). Bouwstart september 2026 bevestigd. Verkoop appartementen gestart mei 2026. Ca. 41.000 m² totaal (299 app. + 15.000 m² kantoor + retail + cultuur). Kansenscore verhoogd van 3 naar 4.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #38a169;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">Kindcentrum De Middenstip Enter</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Enter (Overijssel)</span>
-      <a href="week-18-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 18</a>
-    </div>
-    <div><span style="background:#dd6b20;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">OPVOLGEN</span> <span style="font-size:14px;color:#f6ad55;">★★★★☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> Bestemmingsplanwijziging onherroepelijk: geen bezwaren. Architect BEKEND: IAA Architecten won de architectenselectie. Aanbesteding bouwkundig werk lopende. Gunning verwacht zomer 2026. Kansenscore verhoogd van 3 naar 4.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #38a169;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">Stadshavens Groningen fase 1 (VanWonen)</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Groningen (Groningen)</span>
-      <a href="week-19-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 19</a>
-    </div>
-    <div><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span> <span style="font-size:14px;color:#f6ad55;">★★★★☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> VanWonen bevestigt bouwstart 300 woningen (sociale huur + koop) in 2026. Omgevingsvergunning onherroepelijk (geen beroep ingediend). V.a. mei 2026: kabels en nutsleidingen in waterfront Eemskanaal. Architecten bekend: ANA Architects (parkeergebouw + blok 1), Koschuch Architects (blok 6 sociale huur + blok 7 koop). Verkoop appartementen start najaar 2026. Aannemer woningbouw wordt H2 2026 geselecteerd.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #cbd5e0;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">CLT Woongebouw Couchette 1A Grunobuurt</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Groningen (Groningen)</span>
-      <a href="week-17-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 17</a>
-    </div>
-    <div><span style="background:#e53e3e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">ACTIE DEZE WEEK</span> <span style="font-size:14px;color:#f6ad55;">★★★☆☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> Couchette 1B (29 woningen) opgeleverd en eerste bewoners welkom per 1 mei 2026. Couchette 1A (82 woningen) volop in aanbouw: kelderverdieping en liftschacht in uitvoering (mei 2026), hoogste punt verwacht eind 2026. Bouwteam CLT-constructie (hout). Beslismoment deuren 1A: JUNI 2026 — DIRECT CONTACT OPNEMEN MET TREBBE BOUW.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #cbd5e0;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">IKC De Gearrin Sint Nicolaasga</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Sint Nicolaasga (Friesland)</span>
-      <a href="week-18-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 18</a>
-    </div>
-    <div><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span> <span style="font-size:14px;color:#f6ad55;">★★★☆☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> Sloop oud schoolgebouw De Paedwizer gestart week 18 (27 april). Leerlingen in tijdelijke huisvesting. Aannemers voor het nieuwe IKC zijn bekend bij gemeente De Fryske Marren (selectie afgerond). Informatiebijeenkomst voor omwonenden gepland mei 2026 (planning bouw, routes, veiligheid). Bouwstart vóór zomervakantie 2026. Oplevering eind 2026.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #cbd5e0;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">Woonzorgcentrum Nijemonde</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Nieuwegein (Utrecht)</span>
-      <a href="week-17-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 17</a>
-    </div>
-    <div><span style="background:#dd6b20;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">OPVOLGEN</span> <span style="font-size:14px;color:#f6ad55;">★★☆☆☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> Bouwterrein afgezet april 2026. VDL De Meeuw gestart met grondwerk en funderingen. Omwonenden ondervonden hinder door ontbrekende alternatieve route; inmiddels opgelost. Beslismoment deuren verwacht september/oktober 2026.
-  </div>
-</div><div style="background:white;border-radius:8px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);border-left: 4px solid #cbd5e0;margin-bottom:10px;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-    <div>
-      <span style="font-weight:600;color:#1a1a2e;">De Wijer Hapert fase 1</span>
-      <span style="color:#718096;font-size:12px;margin-left:8px;">Hapert (Noord-Brabant)</span>
-      <a href="week-19-2026.html" style="color:#3182ce;font-size:12px;margin-left:8px;">← Week 19</a>
-    </div>
-    <div><span style="background:#718096;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;">MONITOREN</span> <span style="font-size:14px;color:#f6ad55;">★★☆☆☆</span></div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#4a5568;background:#f7fafc;border-radius:6px;padding:8px;">
-    <i>Update week 21/2026:</i> Bouwstart fase 1 (42 woningen) bevestigd 10 mei 2026. Developer: Van Heugten Beheer. Uitvoerende aannemer nog niet publiek bekend. Contacteer Van Heugten Beheer voor doorverwijzing naar de bouwer.
-  </div>
-</div>
-</section>
-<section style="margin:32px auto;max-width:1200px;padding:0 24px 40px 24px;">
-  <h2 style="font-size:20px;color:#1a1a2e;margin-bottom:16px;border-bottom:2px solid #e2e8f0;padding-bottom:8px;">Markttrends</h2>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;"><div style="background:white;border-radius:8px;padding:16px;text-align:center;flex:1;min-width:160px;box-shadow:0 2px 6px rgba(0,0,0,0.07);">
-  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#718096;margin-bottom:8px;">Meest gevraagde deurtype</div>
-  <div style="font-size:18px;font-weight:700;color:#1a1a2e;">Woningdeuren</div>
-  <div style="font-size:12px;color:#a0aec0;margin-top:4px;">6 projecten</div>
-</div><div style="background:white;border-radius:8px;padding:16px;text-align:center;flex:1;min-width:160px;box-shadow:0 2px 6px rgba(0,0,0,0.07);">
-  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#718096;margin-bottom:8px;">Meest actieve sector</div>
-  <div style="font-size:18px;font-weight:700;color:#1a1a2e;">Nieuwbouw</div>
-  <div style="font-size:12px;color:#a0aec0;margin-top:4px;">14 projecten</div>
-</div><div style="background:white;border-radius:8px;padding:16px;text-align:center;flex:1;min-width:160px;box-shadow:0 2px 6px rgba(0,0,0,0.07);">
-  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#718096;margin-bottom:8px;">Meest actieve regio</div>
-  <div style="font-size:18px;font-weight:700;color:#1a1a2e;">Midden</div>
-  <div style="font-size:12px;color:#a0aec0;margin-top:4px;">10 projecten</div>
-</div><div style="background:white;border-radius:8px;padding:16px;text-align:center;flex:1;min-width:160px;box-shadow:0 2px 6px rgba(0,0,0,0.07);">
-  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#718096;margin-bottom:8px;">Vaakst voorgeschreven fabrikant</div>
-  <div style="font-size:18px;font-weight:700;color:#1a1a2e;">Niet gespecificeerd</div>
-  <div style="font-size:12px;color:#a0aec0;margin-top:4px;">n.v.t.</div>
-</div></div>
-</section>
+
 <script>
-function filterProjecten(filter, waarde, tegelEl) {
+
+let af = {tegel:null, tv:null, aannemer:'', deurtype:''};
+
+function applyFilters() {
   document.querySelectorAll('.projectkaart').forEach(k => {
-    k.closest('.kaart-wrapper').style.display = '';
+    const w = k.closest('.kaart-wrapper');
+    let toon = true;
+    if (af.tegel && af.tv && k.dataset[af.tegel] !== af.tv) toon = false;
+    if (af.aannemer) {
+      const a = (k.dataset.aannemer||'').replace(/-/g,' ').toLowerCase();
+      if (!a.includes(af.aannemer.toLowerCase())) toon = false;
+    }
+    if (af.deurtype) {
+      if (!(k.dataset.deurtype||'').split(' ').includes(af.deurtype)) toon = false;
+    }
+    if (w) w.style.display = toon ? '' : 'none';
   });
-  if (filter && waarde) {
-    document.querySelectorAll('.projectkaart').forEach(k => {
-      const w = k.closest('.kaart-wrapper');
-      if (k.dataset[filter] !== waarde) w.style.display = 'none';
-    });
-    document.querySelectorAll('.regio-sectie').forEach(s => {
-      const zichtbaar = [...s.querySelectorAll('.kaart-wrapper')].some(w => w.style.display !== 'none');
-      s.style.display = zichtbaar ? '' : 'none';
-    });
-  } else {
-    document.querySelectorAll('.regio-sectie').forEach(s => s.style.display = '');
-  }
-  document.querySelectorAll('.stat-tegel').forEach(t => t.classList.remove('actief'));
-  if (tegelEl) tegelEl.classList.add('actief');
+  document.querySelectorAll('.regio-sectie').forEach(s => {
+    s.style.display = [...s.querySelectorAll('.kaart-wrapper')].some(w=>w.style.display!=='none') ? '' : 'none';
+  });
 }
-document.querySelectorAll('.stat-tegel').forEach(t => {
-  t.addEventListener('mouseover', () => { if(!t.classList.contains('actief')) t.style.background = '#e2e8f0'; });
-  t.addEventListener('mouseout', () => { if(!t.classList.contains('actief')) t.style.background = 'white'; });
-});
+
+function filterTegel(filter, waarde, el) {
+  if (af.tegel===filter && af.tv===waarde) { af.tegel=null; af.tv=null; }
+  else { af.tegel=filter; af.tv=waarde; }
+  document.querySelectorAll('.stat-tegel').forEach(t=>t.classList.remove('actief'));
+  if (af.tegel && el) el.classList.add('actief');
+  applyFilters();
+}
+
+function resetFilters() {
+  af.tegel=null; af.tv=null; af.aannemer=''; af.deurtype='';
+  document.querySelectorAll('.stat-tegel').forEach(t=>t.classList.remove('actief'));
+  const za = document.getElementById('zoek-aannemer');
+  const wa = document.getElementById('wis-aannemer');
+  const fd = document.getElementById('filter-deurtype');
+  if (za) za.value='';
+  if (wa) wa.style.display='none';
+  if (fd) fd.value='';
+  applyFilters();
+}
+
+const za = document.getElementById('zoek-aannemer');
+const wa = document.getElementById('wis-aannemer');
+if (za) {
+  za.addEventListener('input', function(){
+    af.aannemer=this.value.trim();
+    if (wa) wa.style.display=this.value?'inline':'none';
+    applyFilters();
+  });
+}
+if (wa) {
+  wa.addEventListener('click', function(){
+    if (za) za.value=''; af.aannemer=''; this.style.display='none'; applyFilters();
+  });
+}
+const fd = document.getElementById('filter-deurtype');
+if (fd) fd.addEventListener('change', function(){ af.deurtype=this.value; applyFilters(); });
+
 </script>
 </body>
 </html>
