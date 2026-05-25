@@ -44,6 +44,11 @@
           "week": 21,
           "jaar": 2026,
           "tekst": "Bouwterrein afgezet april 2026. VDL De Meeuw gestart met grondwerk en funderingen. Omwonenden ondervonden hinder door ontbrekende alternatieve route; inmiddels opgelost. Beslismoment deuren verwacht september/oktober 2026."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Bouw in voortgang. Grondwerk en funderingen nagenoeg gereed. Bovenbouw verwacht te starten na zomer 2026. Geen nieuwe milestones publiek gerapporteerd. Beslismoment deuren oktober 2026 ongewijzigd — contact opnemen met VDL De Meeuw zodra bovenbouw start."
         }
       ]
     },
@@ -61,11 +66,11 @@
       },
       "architect": "onbekend",
       "timing_start": "Q4 2025",
-      "timing_oplevering": "zomer 2027",
+      "timing_oplevering": "zomer 2027 (eerste fase) / begin 2028 (volledig)",
       "projectwaarde": "ca. €12.000.000",
       "omgevingsvergunning": "verleend",
       "fase": "gegund",
-      "beslismoment_deuren": "juni 2026",
+      "beslismoment_deuren": "juni/juli 2026",
       "deurspecificaties": {
         "aantal": "ca. 140",
         "type": "binnendeuren hout CLT-woongebouw",
@@ -78,7 +83,7 @@
       "kansenscore": 3,
       "urgentie": "ACTIE DEZE WEEK",
       "actief": true,
-      "bron": "https://www.trebbe.nl/clt-gebouw-couchette-groningen-opgeleverd/",
+      "bron": "https://www.nijestee.nl/projecten/couchette-1a",
       "eerste_week": 17,
       "eerste_jaar": 2026,
       "status_log": [
@@ -91,6 +96,11 @@
           "week": 21,
           "jaar": 2026,
           "tekst": "Couchette 1B (29 woningen) opgeleverd en eerste bewoners welkom per 1 mei 2026. Couchette 1A (82 woningen) volop in aanbouw: kelderverdieping en liftschacht in uitvoering (mei 2026), hoogste punt verwacht eind 2026. Bouwteam CLT-constructie (hout). Beslismoment deuren 1A: JUNI 2026 — DIRECT CONTACT OPNEMEN MET TREBBE BOUW."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Kelderverdieping en liftschacht in uitvoering. Hoogste punt verwacht eind 2026. Oplevering bijgesteld: eerste bewoners verwacht zomer 2027 (fase 1), volledig klaar begin 2028. ⚠️ BESLISMOMENT DEUREN JUNI/JULI 2026 — BEL TREBBE BOUW NU: 0341-426800 / info@trebbe.nl."
         }
       ]
     },
@@ -137,7 +147,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "AANNEMER BEKEND: BAM Bouw & Techniek in opdracht van NLV (ProVast verkocht Tree House eind 2025 aan NLV, Dutch real estate investor). Vergunning onherroepelijk (Raad van State: alle bezwaren ongegrond). Bouwstart september 2026 bevestigd. Verkoop appartementen gestart mei 2026. Ca. 41.000 m² totaal (299 app. + 15.000 m² kantoor + retail + cultuur). Kansenscore verhoogd van 3 naar 4."
+          "tekst": "AANNEMER BEKEND: BAM Bouw & Techniek in opdracht van NLV. Vergunning onherroepelijk. Bouwstart september 2026 bevestigd. Verkoop appartementen gestart mei 2026. Kansenscore verhoogd van 3 naar 4."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Verkoop appartementen lopende (gestart mei 2026). Bouwstart september 2026 on track. BAM Bouw & Techniek bereidt terrein voor. Geen nieuwe milestones. Beslismoment deuren april 2027 ongewijzigd."
         }
       ]
     },
@@ -184,7 +199,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Sloop oud schoolgebouw De Paedwizer gestart week 18 (27 april). Leerlingen in tijdelijke huisvesting. Aannemers voor het nieuwe IKC zijn bekend bij gemeente De Fryske Marren (selectie afgerond). Informatiebijeenkomst voor omwonenden gepland mei 2026 (planning bouw, routes, veiligheid). Bouwstart vóór zomervakantie 2026. Oplevering eind 2026."
+          "tekst": "Sloop oud schoolgebouw De Paedwizer gestart week 18 (27 april). Leerlingen in tijdelijke huisvesting. Bouwstart vóór zomervakantie 2026. Oplevering eind 2026."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Sloop oud schoolgebouw afgerond begin mei 2026. Terrein gereed voor bouwstart. Van der Meer Bouwbedrijf start vóór zomervakantie 2026. Beslismoment deuren september 2026."
         }
       ]
     },
@@ -231,7 +251,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Bestemmingsplanwijziging onherroepelijk: geen bezwaren. Architect BEKEND: IAA Architecten won de architectenselectie. Aanbesteding bouwkundig werk lopende. Gunning verwacht zomer 2026. Kansenscore verhoogd van 3 naar 4."
+          "tekst": "Bestemmingsplanwijziging onherroepelijk. Architect BEKEND: IAA Architecten. Aanbesteding bouwkundig werk lopende. Gunning verwacht zomer 2026. Kansenscore verhoogd van 3 naar 4."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Europese aanbesteding aannemer lopende. Omgevingsvergunning aanvraag volgt na definitief ontwerp. Gunning zomer 2026. Bouwstart Q3 2026 op schema. Beslismoment deuren augustus 2026."
         }
       ]
     },
@@ -278,7 +303,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "ERA Contour bevestigd als winnaar (persbericht april 2026). Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningprocedure loopt. Bouwstart verwacht 2027. Geen wijziging in score/urgentie."
+          "tekst": "ERA Contour bevestigd als winnaar. Ontwerp Kraaijvanger Architects gepubliceerd. Omgevingsvergunningprocedure loopt. Bouwstart verwacht 2027."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Geen nieuwe publicaties. ERA Contour en Kraaijvanger werken door aan definitief ontwerp. Omgevingsvergunningprocedure loopt. Bouwstart 2027 ongewijzigd. Score 5 en MONITOREN blijven."
         }
       ]
     },
@@ -325,7 +355,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Bouwstart fase 1 (42 woningen) bevestigd 10 mei 2026. Developer: Van Heugten Beheer. Uitvoerende aannemer nog niet publiek bekend. Contacteer Van Heugten Beheer voor doorverwijzing naar de bouwer."
+          "tekst": "Bouwstart fase 1 bevestigd 10 mei 2026. Developer: Van Heugten Beheer. Uitvoerende aannemer nog niet publiek bekend."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Bouw gestart 10 mei 2026, grondwerk in uitvoering. Aannemer naam nog niet publiek gecommuniceerd. Navragen bij Van Heugten Beheer. Beslismoment deuren november 2026."
         }
       ]
     },
@@ -335,13 +370,13 @@
       "locatie": "Groningen (Groningen)",
       "regio": "noord",
       "type": "nieuwbouw",
-      "hoofdaannemer": "onbekend (VanWonen selecteert aannemer 2026)",
+      "hoofdaannemer": "onbekend (VanWonen selecteert aannemer H2 2026)",
       "contact": {
         "naam": "VanWonen – projectteam Stadshavens",
         "email": "info@vanwonen.com",
         "telefoon": "050-5246200"
       },
-      "architect": "onbekend",
+      "architect": "ANA Architects (blok 1) / Koschuch Architects (blok 6+7)",
       "timing_start": "2026 (kade gestart zomer 2025)",
       "timing_oplevering": "2027-2028",
       "projectwaarde": "ca. €45.000.000 (fase 1, ca. 300 woningen)",
@@ -372,7 +407,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "VanWonen bevestigt bouwstart 300 woningen (sociale huur + koop) in 2026. Omgevingsvergunning onherroepelijk (geen beroep ingediend). V.a. mei 2026: kabels en nutsleidingen in waterfront Eemskanaal. Architecten bekend: ANA Architects (parkeergebouw + blok 1), Koschuch Architects (blok 6 sociale huur + blok 7 koop). Verkoop appartementen start najaar 2026. Aannemer woningbouw wordt H2 2026 geselecteerd."
+          "tekst": "VanWonen bevestigt bouwstart 300 woningen in 2026. Omgevingsvergunning onherroepelijk. Architecten bekend: ANA (blok 1), Koschuch (blok 6+7). Verkoop start najaar 2026. Aannemer selectie H2 2026."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Nuts- en leidingwerk waterfront Eemskanaal in uitvoering. Verkoop appartementen start najaar 2026. Aannemer selectie H2 2026. Lefier (sociale huur) start aanbesteding Q3 2026 — monitor voor deurkansen."
         }
       ]
     },
@@ -419,7 +459,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026 — deurspecificaties worden onderdeel van aanbestedingsdocumenten (Q3 2026). Beslismoment bijgesteld naar Q3 2026. Urgentie verhoogd naar OPVOLGEN."
+          "tekst": "Definitief ontwerp wordt afgerond voor zomer 2026. Aanbesteding start direct na zomer 2026. Deurspecificaties onderdeel van aanbestedingsdocumenten Q3 2026. Urgentie verhoogd naar OPVOLGEN."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Definitief ontwerp bijna gereed (vóór zomer 2026). Provinciale Staten: financiering €101M goedgekeurd. Aanbesteding bouw + installaties na zomer 2026. ⚠️ Deurspecificaties in aanbestedingsdocumenten Q3 2026 — offerte-contact nu starten."
         }
       ]
     },
@@ -436,7 +481,7 @@
         "telefoon": "030-6985959"
       },
       "architect": "Spring Architecten",
-      "timing_start": "Q1 2026",
+      "timing_start": "mei 2025 (gestart)",
       "timing_oplevering": "augustus 2026",
       "projectwaarde": "ca. €5.500.000",
       "omgevingsvergunning": "verleend",
@@ -466,7 +511,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Bouw volop in uitvoering. Architect BEVESTIGD: Spring Architecten (MFA Vredenburgh). Complex: 18 klassen CBS TOV + kinderopvang Partou + 1000m² maatschappelijke ruimte. Oplevering augustus 2026 staat vast. KRITIEK: beslismoment deuren JUNI 2026 — bel Pellikaan direct. Kansenscore verhoogd naar 4."
+          "tekst": "Bouw volop in uitvoering. Architect BEVESTIGD: Spring Architecten. Complex: 18 klassen CBS TOV + kinderopvang Partou + 1000m² maatschappelijke ruimte. Oplevering augustus 2026 staat vast. KRITIEK: beslismoment deuren JUNI 2026."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Bouw in afbouwfase. Topping-out was december 2025. Oplevering augustus 2026 voor schooljaar 2026/2027. ⚠️ UITERSTE MOMENT: beslismoment deuren JUNI 2026 — BEL PELLIKAAN NU: 030-6985959 / info@pellikaan.nl."
         }
       ]
     },
@@ -513,7 +563,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Aangepast voorlopig ontwerp gepresenteerd (maart 2026): gebouw compacter en dichter bij rooilijn Hoofdstraat. Omgevingsvergunningaanvraag bijgesteld naar januari 2027 (later dan eerder verwacht). Aanbesteding bouw volgt na vergunningverlening (verwacht 2027). Buro Kade rondt definitief ontwerp af."
+          "tekst": "Aangepast voorlopig ontwerp gepresenteerd (maart 2026): gebouw compacter. Omgevingsvergunningaanvraag bijgesteld naar januari 2027. Aanbesteding bouw volgt na vergunningverlening."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Buro Kade werkt door aan definitief ontwerp. Aanvraag omgevingsvergunning verwacht januari 2027 (2 hoog + kap, 160 zorgstuio's). Bouwstart 2028 ongewijzigd."
         }
       ]
     },
@@ -560,7 +615,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Geen nieuwe publicatie gevonden deze week. Aanbesteding lopende op Mercell-platform. Gunning verwacht juli 2026. Neem direct contact op via inkoop@wonenlimburg.nl."
+          "tekst": "Geen nieuwe publicatie gevonden. Aanbesteding lopende op Mercell-platform. Gunning verwacht juli 2026."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Aanbesteding nog lopende (Mercell). Gunning verwacht juli 2026. Direct navragen: inkoop@wonenlimburg.nl — dit is het grootste renovatiepakket deuren in de portefeuille (800+ deuren)."
         }
       ]
     },
@@ -602,7 +662,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Eerste publicatie. Aanbesteding uitvoeringswerkzaamheden onderwijs- en sportfaciliteit (5200 m² bvo) gepubliceerd. Architect: NEXT Architects. Voorlopig ontwerp goedgekeurd maart 2026. Max. 5 inschrijvers, gunning eind 2026, bouwstart H2 2026, oplevering Q1 2028. Budget >€28M. Opdrachtgever: gemeente Teylingen voor Sophia Scholen + OBODB + UniKidz + sportverenigingen."
+          "tekst": "Eerste publicatie. Aanbesteding 5200 m² bvo gepubliceerd. Architect: NEXT Architects. Max. 5 inschrijvers, gunning eind 2026, bouwstart H2 2026, oplevering Q1 2028. Budget >€28M."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Aanbesteding lopende (max. 5 inschrijvers). Gunning verwacht eind 2026. Geen update gevonden. Monitor aanbestedingsresultaat via TenderApp."
         }
       ]
     },
@@ -644,7 +709,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Eerste publicatie. Woonzorg Nederland + Gemeente Amstelveen sluiten overeenkomst voor nieuw verpleeghuis op locatie Olmenhof (134 app. dementerende senioren, zorgverlener Brentano). Sloop huidig gebouw (1973) gepland Q2 2026. Bouwstart Q4 2026, oplevering medio 2028. Aanbesteding bouw nog niet gestart."
+          "tekst": "Eerste publicatie. Woonzorg Nederland + Gemeente Amstelveen sluiten overeenkomst voor nieuw verpleeghuis. Sloop gepland Q2 2026. Bouwstart Q4 2026, oplevering medio 2028."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Oekraïense vluchtelingen verlaten gebouw Q2 2026 voor de sloop. Sloop gepland Q2/Q3 2026. Bouwstart Q4 2026 op schema. Aanbesteding bouw volgt na sloop."
         }
       ]
     },
@@ -686,7 +756,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Eerste publicatie. Anterieure overeenkomst getekend (maart 2026) door gemeente Hilversum en Prosper Vitae voor transformatie voormalig bedrijventerrein naar 233 woningen + 1500 m² commercieel. Fase 1: 6 gebouwen. Sloop na zomer 2026, infra Q4 2026, eerste woningen medio 2029. SVn Transformatiefaciliteit betrokken."
+          "tekst": "Eerste publicatie. Anterieure overeenkomst getekend (maart 2026). Sloop na zomer 2026, infra Q4 2026, eerste woningen medio 2029."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Geen nieuwe publicaties. Sloop na zomer 2026 gepland. Prosper Vitae werkt aan verkoopplan fase 1. Aanbesteding woningbouw volgt 2027."
         }
       ]
     },
@@ -718,7 +793,7 @@
         "afwerking": "HPL hygiënisch"
       },
       "fabrikanten": [],
-      "kansenscore": 2,
+      "kansenscore": 3,
       "urgentie": "MONITOREN",
       "actief": true,
       "bron": "https://www.amstelring.nl/startsein-nieuwbouw-holmkwartier-160-zorgappartementen-in-hoofddorp",
@@ -728,7 +803,12 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Eerste publicatie. Amstelring en KBK Bouw slaan eerste paal voor Parkblok Holmkwartier in Hoofddorp (voorjaar 2026). 160 zorgappartementen voor bewoners van verpleeghuizen Bornholm en Eijkenhove. Oplevering 2028. Omliggende woonwijk (225+ woningen) volgt in latere fasen. Contact: KBK Bouw voor doorkoppeling naar deurkoper."
+          "tekst": "Eerste publicatie. Amstelring en KBK Bouw slaan eerste paal voor Parkblok Holmkwartier (160 zorgappartementen). Oplevering 2028."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Eerste paal geslagen voorjaar 2026 bevestigd. KBK Bouw actief op terrein. Kansenscore verhoogd van 2 naar 3 (bouw gestart). Beslismoment deuren Q4 2026 nadert — zoek contact met KBK Bouw."
         }
       ]
     },
@@ -746,7 +826,7 @@
       },
       "architect": "Beltman Architecten",
       "timing_start": "H1 2027 (afhankelijk vergunning)",
-      "timing_oplevering": "2028–2029 (gefaseerd, 3 gebouwen)",
+      "timing_oplevering": "2028-2029 (gefaseerd, 3 gebouwen)",
       "projectwaarde": "onbekend (278 zorggeschikte appartementen)",
       "omgevingsvergunning": "in aanvraag",
       "fase": "planfase",
@@ -770,7 +850,96 @@
         {
           "week": 21,
           "jaar": 2026,
-          "tekst": "Eerste publicatie. Liberein (zorgorganisatie Enschede) en Dura Vermeer Bouw & Vastgoed Hengelo tekenen bouwteamovereenkomst voor 278 zorggeschikte 2-kamer appartementen aan de CF Klaarstraat. Architect: Beltman Architecten. 3 gebouwen gefaseerd gerealiseerd. Vergunningprocedure loopt; bouwstart H1 2027. Doelgroep: senioren met indicatie voor Volledig Pakket Thuis. Ook ruimte voor huisartsenpraktijk. Dura Vermeer contactpersoon voor deurinkoopbeslissing."
+          "tekst": "Eerste publicatie. Liberein en Dura Vermeer tekenen bouwteamovereenkomst voor 278 zorggeschikte appartementen. Architect: Beltman Architecten. 3 gebouwen gefaseerd. Vergunningprocedure loopt; bouwstart H1 2027."
+        },
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "Vergunningprocedure loopt. Geen nieuwe ontwikkelingen. Bouwstart H1 2027 ongewijzigd. Beltman Architecten werkt door aan definitief ontwerp."
+        }
+      ]
+    },
+    {
+      "id": "mfa-nieuwe-tonge-2026",
+      "naam": "MFA Nieuwe-Tonge (school + kinderopvang + gymzaal)",
+      "locatie": "Nieuwe-Tonge (Zuid-Holland)",
+      "regio": "midden",
+      "type": "nieuwbouw",
+      "hoofdaannemer": "Bergh Bouw B.V.",
+      "contact": {
+        "naam": "Bergh Bouw B.V. – projectteam MFA Nieuwe-Tonge",
+        "email": "info@berghbouw.nl",
+        "telefoon": "0164-272200"
+      },
+      "architect": "onbekend (duurzaam + natuur-inclusief ontwerp)",
+      "timing_start": "H2 2026",
+      "timing_oplevering": "halverwege 2027",
+      "projectwaarde": "ca. €4.500.000",
+      "omgevingsvergunning": "onbekend",
+      "fase": "aanbesteding",
+      "beslismoment_deuren": "Q4 2026",
+      "deurspecificaties": {
+        "aantal": "ca. 65",
+        "type": "binnendeuren hout school + kinderopvang + gymzaal",
+        "brandwerendheid": "EI30",
+        "akoestiek": "Rw ≥ 28 dB",
+        "inbraakwerendheid": "RC2 (buitendeuren)",
+        "afwerking": "HPL kleur nader te bepalen"
+      },
+      "fabrikanten": [],
+      "kansenscore": 4,
+      "urgentie": "OPVOLGEN",
+      "actief": true,
+      "bron": "https://www.goeree-overflakkee.nl/nieuwe-stap-in-ontwikkeling-mfa-nieuwe-tonge-bouwteamovereenkomst-ondertekend",
+      "eerste_week": 22,
+      "eerste_jaar": 2026,
+      "status_log": [
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "NIEUW WEEK 22. Bouwteamovereenkomst ondertekend 8 mei 2026: Gemeente Goeree-Overflakkee en Bergh Bouw B.V. (Bergen op Zoom). MFA huisvest OBS De Pannebakker, kinderopvang Kibeo en gymzaal. Duurzaam en natuur-inclusief ontwerp. Kinderen naar tijdelijk onderkomen (Koningin Julianastraat, januari 2026). Bouwstart H2 2026, oplevering halverwege 2027. Definitief ontwerp in ontwikkeling met bouwteam."
+        }
+      ]
+    },
+    {
+      "id": "mfa-bavel-breda-2026",
+      "naam": "MFA Bavel Breda (sporthal + cultuurzaal + horeca)",
+      "locatie": "Bavel (Noord-Brabant)",
+      "regio": "zuid",
+      "type": "nieuwbouw",
+      "hoofdaannemer": "onbekend (heraanbesteding afgerond)",
+      "contact": {
+        "naam": "Gemeente Breda – projectteam MFA Bavel",
+        "email": "info@breda.nl",
+        "telefoon": "076-5294444"
+      },
+      "architect": "Synarchis",
+      "timing_start": "mei 2026 (gestart)",
+      "timing_oplevering": "september 2027",
+      "projectwaarde": "ca. €4.500.000 (excl. BTW)",
+      "omgevingsvergunning": "verleend",
+      "fase": "gegund",
+      "beslismoment_deuren": "Q4 2026",
+      "deurspecificaties": {
+        "aantal": "ca. 60",
+        "type": "binnendeuren hout sporthal + cultuurzaal + horeca",
+        "brandwerendheid": "EI30 (standaard) / EI60 (technische ruimten)",
+        "akoestiek": "Rw ≥ 30 dB (cultuurzaal/sporthal)",
+        "inbraakwerendheid": "RC2 (buitendeuren)",
+        "afwerking": "nader te bepalen"
+      },
+      "fabrikanten": [],
+      "kansenscore": 4,
+      "urgentie": "OPVOLGEN",
+      "actief": true,
+      "bron": "https://www.breda.nl/nieuws/college-geeft-groen-licht-voor-bouw-mfa-bavel",
+      "eerste_week": 22,
+      "eerste_jaar": 2026,
+      "status_log": [
+        {
+          "week": 22,
+          "jaar": 2026,
+          "tekst": "NIEUW WEEK 22. Bouw gestart mei 2026 (sloop afgerond begin mei). Architect: Synarchis. 4100 m² bvo: sporthal (32x50m), cultuurzaal (18x25m), horeca, kleedkamers + 2000 m² terreinwerken. Inclusief accumulatorpakket + energiemanagementsysteem. Oplevering september 2027. Contract: turnkey. Aannemer via heraanbesteding geselecteerd maar naam nog niet publiek. Contact via gemeente Breda voor doorverwijzing naar aannemer."
         }
       ]
     }
