@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albo Projectradar — Week 24, 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f8fa; color: #1a202c; }
+
+  /* NAVIGATIE */
+  nav { background: #1a1a2e; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; min-height: 48px; }
+  .nav-brand { color: #fff; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; padding: 12px 0; }
+  .nav-weken { display: flex; gap: 4px; flex-wrap: wrap; padding: 8px 0; }
+  .nav-weken a { color: #a0aec0; text-decoration: none; font-size: 12px; padding: 4px 10px; border-radius: 4px; font-weight: 500; transition: color .15s; }
+  .nav-weken a:hover { color: #fff; }
+  .nav-weken a.actief { color: #fff; font-weight: 700; background: #2d3748; }
+
+  /* HEADER */
+  header { background: #1a1a2e; padding: 32px 40px; }
+  .header-inner { display: flex; align-items: center; gap: 32px; }
+  .header-divider { width: 1px; height: 48px; background: #2d3748; }
+  .header-title { }
+  .header-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: #a0aec0; text-transform: uppercase; }
+  .header-h1 { font-size: 22px; font-weight: 700; color: #fff; margin-top: 4px; }
+  .header-datum { font-size: 13px; color: #718096; margin-top: 4px; }
+
+  /* SAMENVATTING */
+  .samenvatting { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 32px; display: flex; flex-wrap: wrap; gap: 0; }
+  .stat-tegel { flex: 1; min-width: 110px; padding: 16px 20px; cursor: pointer; border-bottom: 3px solid transparent; transition: background .15s, border-color .15s; text-align: center; }
+  .stat-tegel:hover { background: #e2e8f0; }
+  .stat-tegel.actief { border-bottom: 3px solid #1a1a2e; background: #f0f4ff; }
+  .stat-tegel .getal { font-size: 26px; font-weight: 700; color: #1a1a2e; }
+  .stat-tegel .label { font-size: 11px; color: #718096; margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+  .stat-tegel.nieuw .getal { color: #38a169; }
+  .stat-tegel.actie .getal { color: #e53e3e; }
+
+  /* ZOEKBALK */
+  .zoekbalk { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin: 20px 32px 0; padding: 16px 24px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .zoek-veld { flex: 1; min-width: 200px; }
+  .zoek-veld label { display: block; font-size: 11px; text-transform: uppercase; color: #a0aec0; font-weight: 700; letter-spacing: .5px; margin-bottom: 6px; }
+  .zoek-veld input, .zoek-veld select { width: 100%; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; font-size: 14px; outline: none; font-family: inherit; }
+  .zoek-veld input:focus, .zoek-veld select:focus { border-color: #667eea; }
+  .zoek-veld-wrapper { position: relative; }
+  .zoek-veld-wrapper input { padding-right: 28px; }
+  #wis-aannemer { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #a0aec0; font-size: 16px; display: none; line-height: 1; }
+
+  /* SECTIES */
+  .sectie { margin: 24px 32px 0; }
+  .sectie-titel { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #718096; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .sectie-titel span { color: #1a1a2e; }
+
+  /* REGIO-SECTIES */
+  .regio-sectie { margin-bottom: 24px; }
+  .regio-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #a0aec0; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .regio-label::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+  /* PROJECTKAARTEN */
+  .kaart-wrapper { margin-bottom: 12px; }
+  .projectkaart { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08); padding: 20px; border-left: 4px solid #e2e8f0; }
+  .projectkaart.kans-hoog { border-left-color: #38a169; }
+  .projectkaart .kaart-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .kaart-naam { font-size: 16px; font-weight: 700; color: #1a1a2e; }
+  .kaart-meta { font-size: 13px; color: #718096; margin-top: 2px; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  .badge-actie { background: #fed7d7; color: #9b2c2c; }
+  .badge-opvolgen { background: #feebc8; color: #7b341e; }
+  .badge-monitoren { background: #e2e8f0; color: #4a5568; }
+  .badge-nieuw { background: #c6f6d5; color: #22543d; }
+  .badge-exclusief { background: #feb2b2; color: #742a2a; }
+  .badge-gelijkwaardig { background: #fefcbf; color: #744210; }
+  .kans-sterren { font-size: 15px; color: #d69e2e; }
+
+  .kaart-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px; }
+  .kaart-veld { }
+  .kaart-veld-label { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: #a0aec0; font-weight: 700; margin-bottom: 2px; }
+  .kaart-veld-value { font-size: 13px; color: #2d3748; font-weight: 500; }
+  .kaart-veld-value.alert { color: #e53e3e; font-weight: 700; }
+
+  .deur-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+  .deur-tag { font-size: 11px; background: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+
+  .kaart-bron { font-size: 12px; color: #667eea; margin-top: 8px; }
+  .kaart-bron a { color: #667eea; text-decoration: none; }
+  .kaart-bron a:hover { text-decoration: underline; }
+
+  .status-log-entry { font-size: 12px; color: #4a5568; background: #f7fafc; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #bee3f8; margin-top: 8px; }
+  .status-log-entry strong { color: #2b6cb0; }
+
+  /* DASHBOARD */
+  .dashboard { background: #fffbeb; border: 2px solid #f6d860; border-radius: 12px; margin: 24px 32px 0; padding: 20px 24px; }
+  .dashboard-titel { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #744210; margin-bottom: 16px; }
+  .dashboard-kaarten { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .dashboard-kaart { background: #fff; border: 1px solid #f6e05e; border-radius: 8px; padding: 14px; }
+  .dashboard-kaart-naam { font-size: 14px; font-weight: 700; color: #1a202c; margin-bottom: 4px; }
+  .dashboard-kaart-meta { font-size: 12px; color: #718096; margin-bottom: 8px; }
+  .dashboard-kaart-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .dashboard-kaart-label { font-size: 10px; text-transform: uppercase; color: #a0aec0; font-weight: 700; }
+  .dashboard-kaart-value { font-size: 12px; color: #2d3748; font-weight: 600; }
+  .dashboard-kaart-beslismoment { font-size: 12px; color: #e53e3e; font-weight: 700; }
+  .dashboard-link { font-size: 11px; color: #667eea; text-decoration: none; display: inline-block; margin-top: 6px; }
+
+  /* MARKTTRENDS */
+  .markttrends { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin: 24px 32px 32px; padding: 20px 24px; }
+  .trends-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 12px; }
+  .trend-item { text-align: center; }
+  .trend-item .trend-label { font-size: 10px; text-transform: uppercase; color: #a0aec0; font-weight: 700; letter-spacing: .5px; margin-bottom: 4px; }
+  .trend-item .trend-value { font-size: 15px; font-weight: 700; color: #1a1a2e; }
+  .trend-item .trend-sub { font-size: 11px; color: #718096; }
+
+  @media (max-width: 600px) {
+    .header-inner { flex-direction: column; gap: 12px; }
+    .header-divider { display: none; }
+    nav { padding: 0 16px; }
+    .samenvatting { padding: 0 16px; }
+    .zoekbalk { margin: 12px 16px 0; padding: 12px 16px; }
+    .sectie { margin: 16px 16px 0; }
+    .dashboard { margin: 16px 16px 0; }
+    .markttrends { margin: 16px 16px 24px; }
+    header { padding: 20px 16px; }
+    .stat-tegel { min-width: 80px; padding: 12px 8px; }
+    .stat-tegel .getal { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATIE -->
+<nav>
+  <div class="nav-brand">ALBO PROJECTRADAR</div>
+  <div class="nav-weken">
+    <a href="week-24-2026.html" class="actief">W24 2026</a>
+    <a href="week-23-2026.html">W23</a>
+    <a href="week-22-2026.html">W22</a>
+    <a href="week-21-2026.html">W21</a>
+    <a href="week-20-2026.html">W20</a>
+    <a href="week-19-2026.html">W19</a>
+    <a href="week-18-2026.html">W18</a>
+    <a href="week-17-2026.html">W17</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <img src="https://www.albodeuren.nl/wp-content/uploads/2023/05/Albo-logo-FC.png"
+         alt="Albo Deuren"
+         style="height:52px; filter:brightness(0) invert(1);">
+    <div class="header-divider"></div>
+    <div class="header-title">
+      <div class="header-label">PROJECTRADAR</div>
+      <div class="header-h1">Projectupdate &mdash; Week 24, 2026</div>
+      <div class="header-datum">maandag 8 juni 2026 &nbsp;|&nbsp; 23 actieve projecten &nbsp;|&nbsp; 3 nieuw deze week</div>
+    </div>
+  </div>
+</header>
+
+<!-- SAMENVATTINGSBALK -->
+<div class="samenvatting">
+  <div class="stat-tegel" onclick="filterTegel('regio',null,this)" data-filter="totaal">
+    <div class="getal">23</div>
+    <div class="label">Totaal actief</div>
+  </div>
+  <div class="stat-tegel" onclick="filterTegel('regio','noord',this)">
+    <div class="getal">5</div>
+    <div class="label">Noord</div>
+  </div>
+  <div class="stat-tegel" onclick="filterTegel('regio','midden',this)">
+    <div class="getal">13</div>
+    <div class="label">Midden</div>
+  </div>
+  <div class="stat-tegel" onclick="filterTegel('regio','zuid',this)">
+    <div class="getal">5</div>
+    <div class="label">Zuid</div>
+  </div>
+  <div class="stat-tegel" onclick="filterTegel('kans','hoog',this)">
+    <div class="getal">13</div>
+    <div class="label">Hoge kans (4-5★)</div>
+  </div>
+  <div class="stat-tegel actie" onclick="filterTegel('urgentie','actie',this)">
+    <div class="getal">3</div>
+    <div class="label">Actie deze week</div>
+  </div>
+  <div class="stat-tegel nieuw" onclick="filterTegel('nieuw','true',this)">
+    <div class="getal">3</div>
+    <div class="label">Nieuw deze week</div>
+  </div>
+</div>
+
+<!-- ZOEKBALK -->
+<div class="zoekbalk">
+  <div class="zoek-veld">
+    <label for="zoek-aannemer">Hoofdaannemer</label>
+    <div class="zoek-veld-wrapper">
+      <input type="text" id="zoek-aannemer" list="aannemer-lijst" placeholder="Typ om te zoeken...">
+      <button id="wis-aannemer" title="Wissen">&times;</button>
+    </div>
+    <datalist id="aannemer-lijst">
+      <option value="VDL De Meeuw">
+      <option value="Trebbe Bouw">
+      <option value="BAM Bouw Techniek">
+      <option value="Van der Meer Bouwbedrijf">
+      <option value="ERA Contour">
+      <option value="Van Heugten Beheer">
+      <option value="VanWonen">
+      <option value="Provincie Utrecht">
+      <option value="Pellikaan Bouw">
+      <option value="Marente">
+      <option value="Wonen Limburg">
+      <option value="Gemeente Teylingen">
+      <option value="Woonzorg Nederland">
+      <option value="Prosper Vitae">
+      <option value="KBK Bouw">
+      <option value="Dura Vermeer">
+      <option value="Bergh Bouw">
+      <option value="Synarchis">
+      <option value="Gemeente Maastricht">
+      <option value="Van Miltenburg Bouw">
+      <option value="Gemeente Steenbergen">
+      <option value="Amstelring">
+    </datalist>
+  </div>
+  <div class="zoek-veld">
+    <label for="filter-deurtype">Type deur</label>
+    <select id="filter-deurtype">
+      <option value="">Alle deurtypen</option>
+      <optgroup label="Brandwerendheid">
+        <option value="ei30">EI30</option>
+        <option value="ei60">EI60</option>
+        <option value="ei120">EI120</option>
+      </optgroup>
+      <optgroup label="Constructie">
+        <option value="opdek">Opdek</option>
+        <option value="stomp">Stomp</option>
+        <option value="massief">Massief</option>
+        <option value="hol">Hol</option>
+        <option value="mdf">MDF</option>
+      </optgroup>
+      <optgroup label="Inbraakwerendheid">
+        <option value="rc2">RC2</option>
+        <option value="rc3">RC3</option>
+      </optgroup>
+      <optgroup label="Afwerking">
+        <option value="hpl">HPL</option>
+        <option value="lakwerk">Lakwerk</option>
+        <option value="fineer">Fineer</option>
+        <option value="folie">Folie</option>
+      </optgroup>
+      <optgroup label="Toepassing">
+        <option value="woningdeuren">Woningdeuren</option>
+        <option value="kantoordeuren">Kantoordeuren</option>
+        <option value="zorgdeuren">Zorgdeuren</option>
+        <option value="schooldeuren">Schooldeuren</option>
+        <option value="hoteldeuren">Hoteldeuren</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+
+<!-- NIEUWE PROJECTEN WEEK 24 -->
+<div class="sectie">
+  <div class="sectie-titel">&#10024; Nieuwe Projecten &mdash; <span>Week 24, 2026</span></div>
+
+  <!-- REGIO MIDDEN -->
+  <div class="regio-sectie" id="regio-midden-nieuw">
+    <div class="regio-label">Midden</div>
+
+    <!-- Vreugdehof Amsterdam -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="true" data-aannemer="amstelring"
+         data-deurtype="ei60 rc2 hpl zorgdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Nieuwbouw Verpleeghuis Vreugdehof Amsterdam-Buitenveldert</div>
+            <div class="kaart-meta">Amsterdam (Noord-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Zorg</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-nieuw">NIEUW</span>
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">onbekend (na sloop 2026)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">Amstelring &mdash; info@amstelring.nl &middot; 020-6539900</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">de Architekten Cie.</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">2027 (sloop 2026 bezig)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Oplevering</div><div class="kaart-veld-value">2029</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">onbekend (~660 eenheden, 75m)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Omgevingsvergunning</div><div class="kaart-veld-value">Verleend (sloop bezig)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Fase</div><div class="kaart-veld-value">Planfase</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q2 2028</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 700+ deuren</span>
+          <span class="deur-tag">Zorgdeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">Rw ≥ 32 dB</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL hygiënisch</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> NIEUW. Amstelring realiseert nieuw verpleeghuis in Amsterdam-Buitenveldert. Architect: de Architekten Cie. Ca. 660 zorgappartementen in 75 meter hoge toren. <strong>SLOOP BEZIG DEZE WEEK</strong> (week 23 tijdelijke terreinsinrichting, week 27 sloop klaar). Bouwfase 2026/2027. Sloopcontractor: Bentvelzen-Jacobs. Aanbesteding bouwconstructie volgt na sloop. <strong>GROOTSTE ZORGDEURPAKKET in pipeline.</strong>
+        </div>
+        <div class="kaart-bron">Bron: <a href="https://www.amstelring.nl/nieuwbouw-verpleeghuis-vreugdehof" target="_blank">amstelring.nl</a></div>
+      </div>
+    </div>
+
+    <!-- Montessorischool Maassluis -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="opvolgen" data-kans="hoog"
+         data-nieuw="true" data-aannemer="van-miltenburg-bouw"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Nieuwbouw Montessorischool Maassluis</div>
+            <div class="kaart-meta">Maassluis (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-nieuw">NIEUW</span>
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">Van Miltenburg Bouw &amp; Onderhoud</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@vanmiltenburg.nl</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Kraaijvanger Architecten</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">januari 2026 (in uitvoering)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Oplevering</div><div class="kaart-veld-value">eind 2026 / gebruik begin 2027</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €3.500.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Omgevingsvergunning</div><div class="kaart-veld-value">Verleend</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Fase</div><div class="kaart-veld-value">Gegund — in uitvoering</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value alert">aug/sep 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 35 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">Rw ≥ 25 dB</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> NIEUW. Gegund jan 2026 aan Van Miltenburg Bouw &amp; Onderhoud. Architect Kraaijvanger. 2 verdiepingen, 1508 m² bvo, centrale patio, 10 groepsruimten + BSO. Opdrachtgever: Stichting Monton. Beslismoment deuren aug/sep 2026 — <strong>BEL VAN MILTENBURG: info@vanmiltenburg.nl</strong>
+        </div>
+        <div class="kaart-bron">Bron: <a href="https://www.tender.app/aanbestedingen/monton-bouwkundige-uitvoering-nieuwbouw-montessorischool-maassluis" target="_blank">TenderApp</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIO ZUID -->
+  <div class="regio-sectie" id="regio-zuid-nieuw">
+    <div class="regio-label">Zuid</div>
+
+    <!-- Kindcentrum Dinteloord -->
+    <div class="kaart-wrapper"
+         data-regio="zuid" data-urgentie="monitoren" data-kans="laag"
+         data-nieuw="true" data-aannemer="gemeente-steenbergen"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Kindcentrum Dinteloord (ECM)</div>
+            <div class="kaart-meta">Dinteloord (Noord-Brabant) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-nieuw">NIEUW</span>
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Aanbesteder</div><div class="kaart-veld-value">Gemeente Steenbergen + Lowys Porquinstichting</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@gemeente-steenbergen.nl &middot; 0167-543000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">onbekend (ECM — aannemer levert ontwerp)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">1 januari 2027</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Oplevering</div><div class="kaart-veld-value">31 december 2027</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €5.500.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Omgevingsvergunning</div><div class="kaart-veld-value">Onbekend</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Fase</div><div class="kaart-veld-value">ECM Aanbesteding lopende</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q3 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 55 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">Rw ≥ 28 dB</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL Frisse Scholen B</span>
+          <span class="deur-tag">ENG-ambitie</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> NIEUW. ECM aanbesteding (niet-openbaar Europees, ARW 2016). Doel: ontwerp + bouw + 20 jaar beheer. 2 verdiepingen, demontabele staal-beton/hout constructie, volledig gasloos. Vervangt 2 basisscholen + kinderopvang. Monitor gunning via TenderApp Dinteloord.
+        </div>
+        <div class="kaart-bron">Bron: <a href="https://www.tender.app/aanbestedingen-2026/nieuwbouw-kindcentrum-te-dinteloord" target="_blank">TenderApp</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD TOP 5 -->
+<div class="dashboard">
+  <div class="dashboard-titel">&#127942; Dashboard — Top 5 Kansrijkste Projecten</div>
+  <div class="dashboard-kaarten">
+
+    <div class="dashboard-kaart">
+      <div class="dashboard-kaart-naam">Renovatie Huis voor de Provincie Utrecht</div>
+      <div class="dashboard-kaart-meta">Utrecht &nbsp;|&nbsp; ★★★★★ &nbsp;|&nbsp; Week 19</div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Aannemer</div><div class="dashboard-kaart-value">onbekend (aanbesteding na zomer)</div></div>
+      </div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Contact</div><div class="dashboard-kaart-value">info@provincie-utrecht.nl &middot; 030-2589111</div></div>
+      </div>
+      <div class="dashboard-kaart-label">Beslismoment deuren</div>
+      <div class="dashboard-kaart-beslismoment">⚠️ Q3 2026 — aanbestedingsdocumenten verschijnen NU</div>
+      <div class="dashboard-kaart-label" style="margin-top:6px">Laatste status</div>
+      <div style="font-size:12px;color:#4a5568">Definitief ontwerp bijna gereed. Financiering €101M onherroepelijk. €400 deuren EI60/EI120/RC3.</div>
+      <a class="dashboard-link" href="week-19-2026.html">Zie week 19 →</a>
+    </div>
+
+    <div class="dashboard-kaart">
+      <div class="dashboard-kaart-naam">Voormekaar Hoogveen Den Haag Zuidwest</div>
+      <div class="dashboard-kaart-meta">Den Haag &nbsp;|&nbsp; ★★★★★ &nbsp;|&nbsp; Week 18</div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Aannemer</div><div class="dashboard-kaart-value">ERA Contour</div></div>
+      </div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Contact</div><div class="dashboard-kaart-value">info@eracontour.nl &middot; 010-2174700</div></div>
+      </div>
+      <div class="dashboard-kaart-label">Beslismoment deuren</div>
+      <div class="dashboard-kaart-beslismoment">Q2 2027</div>
+      <div class="dashboard-kaart-label" style="margin-top:6px">Laatste status</div>
+      <div style="font-size:12px;color:#4a5568">867 woningen Den Haag Zuidwest. ~900 deuren EI30/EI60/RC2. DO in uitvoering, bouwstart 2027.</div>
+      <a class="dashboard-link" href="week-18-2026.html">Zie week 18 →</a>
+    </div>
+
+    <div class="dashboard-kaart">
+      <div class="dashboard-kaart-naam">Nieuwbouw Verpleeghuis Bernardus Sassenheim</div>
+      <div class="dashboard-kaart-meta">Sassenheim &nbsp;|&nbsp; ★★★★★ &nbsp;|&nbsp; Week 20</div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Contact</div><div class="dashboard-kaart-value">Marente &middot; info@marente.nl &middot; 0252-220200</div></div>
+      </div>
+      <div class="dashboard-kaart-label">Beslismoment deuren</div>
+      <div class="dashboard-kaart-beslismoment">Q3 2027</div>
+      <div class="dashboard-kaart-label" style="margin-top:6px">Laatste status</div>
+      <div style="font-size:12px;color:#4a5568">Buro Kade werkt aan DO. Vergunningaanvraag jan 2027. ~250 zorgdeuren EI60/HPL hygiënisch.</div>
+      <a class="dashboard-link" href="week-20-2026.html">Zie week 20 →</a>
+    </div>
+
+    <div class="dashboard-kaart">
+      <div class="dashboard-kaart-naam">Vreugdehof Amsterdam-Buitenveldert ⭐ NIEUW</div>
+      <div class="dashboard-kaart-meta">Amsterdam &nbsp;|&nbsp; ★★★★★ &nbsp;|&nbsp; Week 24</div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Contact</div><div class="dashboard-kaart-value">Amstelring &middot; info@amstelring.nl &middot; 020-6539900</div></div>
+      </div>
+      <div class="dashboard-kaart-label">Beslismoment deuren</div>
+      <div class="dashboard-kaart-beslismoment">Q2 2028</div>
+      <div class="dashboard-kaart-label" style="margin-top:6px">Laatste status</div>
+      <div style="font-size:12px;color:#4a5568">Sloop bezig deze week. 660 zorgappartementen, 75m hoog. ~700+ deuren EI60/HPL. Architect: de Architekten Cie.</div>
+      <a class="dashboard-link" href="week-24-2026.html">Zie week 24 →</a>
+    </div>
+
+    <div class="dashboard-kaart">
+      <div class="dashboard-kaart-naam">Schoolgebouw Park Vredenburgh Waddinxveen</div>
+      <div class="dashboard-kaart-meta">Waddinxveen &nbsp;|&nbsp; ★★★★ &nbsp;|&nbsp; Week 20</div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Aannemer</div><div class="dashboard-kaart-value">Pellikaan Bouw</div></div>
+      </div>
+      <div class="dashboard-kaart-row">
+        <div><div class="dashboard-kaart-label">Contact</div><div class="dashboard-kaart-value">info@pellikaan.nl &middot; 030-6985959</div></div>
+      </div>
+      <div class="dashboard-kaart-label">Beslismoment deuren</div>
+      <div class="dashboard-kaart-beslismoment">🚨 JUNI 2026 — ABSOLUTE DEADLINE DEZE WEEK</div>
+      <div class="dashboard-kaart-label" style="margin-top:6px">Laatste status</div>
+      <div style="font-size:12px;color:#4a5568">Bouw in afbouwfase. Oplevering aug 2026 voor schooljaar 2026/2027. ~70 deuren EI30/HPL. BEL NU.</div>
+      <a class="dashboard-link" href="week-20-2026.html">Zie week 20 →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- TERUGBLIK — PROJECTEN MET STATUS UPDATE WEEK 24 -->
+<div class="sectie">
+  <div class="sectie-titel">&#128260; Terugblik &mdash; <span>Status Updates Week 24</span></div>
+
+  <!-- REGIO NOORD -->
+  <div class="regio-sectie" id="regio-noord">
+    <div class="regio-label">Noord</div>
+
+    <!-- Couchette 1A Groningen -->
+    <div class="kaart-wrapper"
+         data-regio="noord" data-urgentie="actie" data-kans="laag"
+         data-nieuw="false" data-aannemer="trebbe-bouw"
+         data-deurtype="ei30 rc2 fineer woningdeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">CLT Woongebouw Couchette 1A Grunobuurt</div>
+            <div class="kaart-meta">Groningen &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Woningbouw &nbsp;|&nbsp; Week 17</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-actie">🚨 ACTIE DEZE WEEK</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">Trebbe Bouw</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value alert">info@trebbe.nl &middot; 0341-426800</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Oplevering</div><div class="kaart-veld-value">begin 2028 (was okt/nov 2027)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value alert">JUNI/JULI 2026 — NU</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 140 deuren</span>
+          <span class="deur-tag">Woningdeuren CLT</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">Fineer naturel</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> ⚠️ ALLERLAATSTE KANS. Eerste paal geheid, kelderverdieping klaar, bovenbouw begonnen. Hoogste punt eind 2026. Oplevering bijgesteld naar <strong>begin 2028</strong>. BESLISMOMENT DEUREN = JUNI/JULI 2026 = NU. <strong>BEL TREBBE BOUW VANDAAG: 0341-426800 / info@trebbe.nl</strong>
+        </div>
+        <div class="kaart-bron">Bron: <a href="https://www.nijestee.nl/projecten/couchette-1a" target="_blank">nijestee.nl</a></div>
+      </div>
+    </div>
+
+    <!-- IKC De Gearrin -->
+    <div class="kaart-wrapper"
+         data-regio="noord" data-urgentie="opvolgen" data-kans="laag"
+         data-nieuw="false" data-aannemer="van-der-meer-bouwbedrijf"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">IKC De Gearrin Sint Nicolaasga</div>
+            <div class="kaart-meta">Sint Nicolaasga (Friesland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs &nbsp;|&nbsp; Week 18</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">Van der Meer Bouwbedrijf</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@vandermeer-bouw.nl &middot; 0515-413900</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value alert">juni 2026 — GESTART</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">aug/sep 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 90 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> BOUWSTART BEVESTIGD juni 2026. Van der Meer + P. de Vries Installatietechnieken actief op locatie. Omgevingsvergunning in terinzagelegging. Beslismoment deuren aug/sep 2026 — <strong>BEL: info@vandermeer-bouw.nl / 0515-413900</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kindcentrum Enter -->
+    <div class="kaart-wrapper"
+         data-regio="noord" data-urgentie="opvolgen" data-kans="hoog"
+         data-nieuw="false" data-aannemer="onbekend-wierden"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Kindcentrum De Middenstip Enter</div>
+            <div class="kaart-meta">Enter (Overijssel) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs &nbsp;|&nbsp; Week 18</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">IAA Architecten</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@wierden.nl &middot; 0546-580800</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Fase</div><div class="kaart-veld-value">Aanbesteding (competitive dialogue, TenderNed #411340)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">augustus 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 95 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Competitive dialogue (max 3 kandidaten per perceel) lopende via TenderNed #411340. IAA Architecten gewonnen architectenselectie. Gunning verwacht zomer 2026. Monitor gunning — zodra aannemer bekend direct contact opnemen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Stadshavens Groningen -->
+    <div class="kaart-wrapper"
+         data-regio="noord" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="vanwonen"
+         data-deurtype="ei30 ei60 rc2 woningdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Stadshavens Groningen fase 1 (VanWonen)</div>
+            <div class="kaart-meta">Groningen &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Woningbouw &nbsp;|&nbsp; Week 19</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Developer</div><div class="kaart-veld-value">VanWonen + Lefier + Nijestee + VolkerWessels Vastgoed + BPD</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@vanwonen.com &middot; 050-5246200</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Aannemer selectie</div><div class="kaart-veld-value">H2 2026</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q3 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 650 deuren</span>
+          <span class="deur-tag">Woningdeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> VanWonen bevestigt bouwstart 307 woningen Trossen Los in 2026. Aannemer selectie H2 2026. Verkoopstart najaar 2026. Monitor aanbestedingsresultaat aannemer selectie.
+        </div>
+      </div>
+    </div>
+
+    <!-- Liberein Enschede -->
+    <div class="kaart-wrapper"
+         data-regio="noord" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="dura-vermeer"
+         data-deurtype="ei60 rc2 hpl zorgdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Liberein Zorgappartementen CF Klaarstraat Enschede</div>
+            <div class="kaart-meta">Enschede (Overijssel) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Zorg &nbsp;|&nbsp; Week 21</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">Dura Vermeer Bouw en Vastgoed Hengelo</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@duravermeer.nl &middot; 074-3434343</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Beltman Architecten</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q4 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 320 deuren</span>
+          <span class="deur-tag">Zorgdeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL hygiënisch</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Liberein houdt bewonersbijeenkomsten. Beltman DO in uitvoering. Omgevingsvergunning aanvraag eind 2026. Bouwstart H1 2027 ongewijzigd. 2 huisartsenpraktijken in plint gebouw 1.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIO MIDDEN -->
+  <div class="regio-sectie" id="regio-midden">
+    <div class="regio-label">Midden</div>
+
+    <!-- Park Vredenburgh -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="actie" data-kans="hoog"
+         data-nieuw="false" data-aannemer="pellikaan-bouw"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Schoolgebouw Park Vredenburgh Waddinxveen</div>
+            <div class="kaart-meta">Waddinxveen (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs &nbsp;|&nbsp; Week 20</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-actie">🚨 ACTIE DEZE WEEK</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">Pellikaan Bouw</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value alert">info@pellikaan.nl &middot; 030-6985959</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Spring Architecten</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Oplevering</div><div class="kaart-veld-value">augustus 2026</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value alert">JUNI 2026 — ABSOLUTE DEADLINE</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 70 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> 🚨 ABSOLUTE DEADLINE. Bouw in eindfase. Oplevering aug 2026 schooljaar 2026/2027. 18 klassen + kinderopvang Partou + extra 3e verdieping. <strong>BESLISMOMENT = DEZE WEEK OF VERLOREN. BEL PELLIKAAN NU: 030-6985959</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Huis voor de Provincie Utrecht -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="opvolgen" data-kans="hoog"
+         data-nieuw="false" data-aannemer="provincie-utrecht"
+         data-deurtype="ei60 ei120 rc3 kantoordeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Renovatie Huis voor de Provincie Utrecht</div>
+            <div class="kaart-meta">Utrecht &nbsp;|&nbsp; Renovatie &nbsp;|&nbsp; Kantoor/Overheid &nbsp;|&nbsp; Week 19</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Opdrachtgever</div><div class="kaart-veld-value">Provincie Utrecht</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@provincie-utrecht.nl &middot; 030-2589111</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €101.000.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value alert">Q3 2026 — aanbestedingsdocumenten</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 400 deuren</span>
+          <span class="deur-tag">Kantoordeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">EI120</span>
+          <span class="deur-tag">RC3</span>
+          <span class="deur-tag">Rw ≥ 35 dB</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> DO bijna gereed voor zomer 2026. PS goedkeuring 29-20. €101M onherroepelijk. Aanbesteding na zomervakantie. ⚠️ <strong>AANBESTEDINGSDOCUMENTEN Q3 2026 — neem NU contact op: info@provincie-utrecht.nl / 030-2589111</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Woonzorgcentrum Nijemonde -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="opvolgen" data-kans="laag"
+         data-nieuw="false" data-aannemer="vdl-de-meeuw"
+         data-deurtype="ei60 rc2 mdf hpl zorgdeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Woonzorgcentrum Nijemonde Nieuwegein</div>
+            <div class="kaart-meta">Nieuwegein (Utrecht) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Zorg &nbsp;|&nbsp; Week 17</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">VDL De Meeuw</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">april 2026 (actief)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €18.000.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">oktober 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 175 deuren</span>
+          <span class="deur-tag">Zorgdeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">MDF wit gespoten</span>
+          <span class="deur-tag">HPL hygiënisch</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> VDL De Meeuw heiboort (geen slaan, minder overlast). Grondwerk + fundering in uitvoering. L-vormig gebouw met binnentuin. Bovenbouw verwacht na zomer 2026. Contact VDL bij start bovenbouw.
+        </div>
+      </div>
+    </div>
+
+    <!-- Treehouse Rotterdam -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="bam-bouw-techniek"
+         data-deurtype="ei30 ei60 rc2 woningdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Treehouse Woontoren Rotterdam</div>
+            <div class="kaart-meta">Rotterdam (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Woningbouw &nbsp;|&nbsp; Week 17</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">BAM Bouw &amp; Techniek</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@bam.nl &middot; 030-6599111</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">oktober 2026 (bijgesteld van sept)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Oplevering</div><div class="kaart-veld-value">januari 2030 (bijgesteld van Q4 2029)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">begin 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 127-299 sets</span>
+          <span class="deur-tag">Woningdeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Bouwstart bijgesteld naar oktober 2026. Oplevering bijgesteld naar januari 2030. Eerste verkoopfase 127 koopappartementen actief (registratie t/m 17 juni 2026). Monitor BAM inkoop na bouwstart okt 2026.
+        </div>
+      </div>
+    </div>
+
+    <!-- Voormekaar Hoogveen -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="era-contour"
+         data-deurtype="ei30 ei60 rc2 woningdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Voormekaar Hoogveen Den Haag Zuidwest</div>
+            <div class="kaart-meta">Den Haag (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Woningbouw &nbsp;|&nbsp; Week 18</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">ERA Contour</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Kraaijvanger + SVP Architectuur</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €120.000.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q2 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 900 deuren</span>
+          <span class="deur-tag">Woningdeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Geen nieuwe publicaties. ERA Contour + Kraaijvanger + SVP werken aan DO. Omgevingsvergunning loopt. Bouwstart 2027 ongewijzigd. Monitor aanbestedingsmoment aannemer.
+        </div>
+      </div>
+    </div>
+
+    <!-- Bernardus Sassenheim -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="marente"
+         data-deurtype="ei60 rc2 hpl zorgdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Nieuwbouw Verpleeghuis Bernardus Sassenheim</div>
+            <div class="kaart-meta">Sassenheim (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Zorg &nbsp;|&nbsp; Week 20</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">Marente &middot; info@marente.nl &middot; 0252-220200</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Buro Kade</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">2028</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q3 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 250 deuren</span>
+          <span class="deur-tag">Zorgdeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL hygiënisch</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Geen nieuwe publicaties. Buro Kade werkt aan DO. Vergunningaanvraag jan 2027. Bouwstart 2028 ongewijzigd. Monitor vergunningpublicatie.
+        </div>
+      </div>
+    </div>
+
+    <!-- MFA Nieuw Boekhorst Voorhout -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="gemeente-teylingen"
+         data-deurtype="ei30 ei60 rc2 hpl schooldeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">MFA Onderwijs &amp; Sport Nieuw Boekhorst Voorhout</div>
+            <div class="kaart-meta">Voorhout (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs/Sport &nbsp;|&nbsp; Week 21</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">NEXT Architects</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@teylingen.nl &middot; 0252-783000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €28.000.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q1 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 130 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Aanbesteding lopende (max 5 inschrijvers). Gunning eind 2026. Kansenscore verhoogd naar 4. Monitor TenderApp voor gunningsbericht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Olmenhof Amstelveen -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="woonzorg-nederland"
+         data-deurtype="ei60 rc2 hpl zorgdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Nieuwbouw Verpleeghuis Olmenhof Amstelveen</div>
+            <div class="kaart-meta">Amstelveen (Noord-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Zorg &nbsp;|&nbsp; Week 21</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">Woonzorg Nederland &middot; info@woonzorg.nl</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">Q4 2026</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Sloopstatus</div><div class="kaart-veld-value alert">SLOOP GESTART (Q2 2026)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q3 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 185 deuren</span>
+          <span class="deur-tag">Zorgdeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL hygiënisch</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> SLOOP GESTART. Locatie vrijgekomen na vertrek Oekraïense vluchtelingen. Bouwstart Q4 2026 on track. Woonzorg Nederland + Brentano (134 dementieplaatsen). Aanbesteding bouw te verwachten Q3 2026 — monitor.
+        </div>
+      </div>
+    </div>
+
+    <!-- Geuzenpark Hilversum -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="monitoren" data-kans="hoog"
+         data-nieuw="false" data-aannemer="prosper-vitae"
+         data-deurtype="ei30 ei60 rc2 woningdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Geuzenpark Hilversum (231 woningen transformatie)</div>
+            <div class="kaart-meta">Hilversum (Noord-Holland) &nbsp;|&nbsp; Transformatie &nbsp;|&nbsp; Woningbouw &nbsp;|&nbsp; Week 21</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Developer</div><div class="kaart-veld-value">Prosper Vitae</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Ronald Janssen Architecten</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Sloop na zomer 2026</div><div class="kaart-veld-value">Eerste oplevering medio 2029</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q2 2028</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 520 deuren</span>
+          <span class="deur-tag">Woningdeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Prosper Vitae bezit 2/3 plangebied. 231 woningen + 1500 m² bedrijfsruimte. Sloop na zomer 2026. Infra Q4 2026. Aanbesteding aannemer 2027 — monitor.
+        </div>
+      </div>
+    </div>
+
+    <!-- Holmkwartier Hoofddorp -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="opvolgen" data-kans="laag"
+         data-nieuw="false" data-aannemer="kbk-bouw"
+         data-deurtype="ei60 rc2 hpl zorgdeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Holmkwartier Parkblok Hoofddorp</div>
+            <div class="kaart-meta">Hoofddorp (Noord-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Zorg &nbsp;|&nbsp; Week 21</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">KBK Bouw</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@kbkbouwgroep.nl &middot; 020-3053850</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">april 2026 (actief)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q4 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 185 deuren</span>
+          <span class="deur-tag">Zorgdeuren hout</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL hygiënisch</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Urgentie verhoogd naar OPVOLGEN. KBK Bouw actief (april 2026 start). Beslismoment deuren Q4 2026 = 4-6 maanden. Bel nu: <strong>info@kbkbouwgroep.nl / 020-3053850</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- MFA Nieuwe-Tonge -->
+    <div class="kaart-wrapper"
+         data-regio="midden" data-urgentie="opvolgen" data-kans="hoog"
+         data-nieuw="false" data-aannemer="bergh-bouw"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">MFA Nieuwe-Tonge (school + kinderopvang + gymzaal)</div>
+            <div class="kaart-meta">Nieuwe-Tonge (Zuid-Holland) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs &nbsp;|&nbsp; Week 22</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Hoofdaannemer</div><div class="kaart-veld-value">Bergh Bouw B.V.</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@berghbouw.nl &middot; 0164-272200</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">H2 2026</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q4 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 65 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Bouwteam werkt aan DO. Locatie: Anemaetstraat, Nieuwe-Tonge. Bouwstart H2 2026. Bel Bergh Bouw vroegtijdig: <strong>info@berghbouw.nl / 0164-272200</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIO ZUID -->
+  <div class="regio-sectie" id="regio-zuid">
+    <div class="regio-label">Zuid</div>
+
+    <!-- Wonen Limburg -->
+    <div class="kaart-wrapper"
+         data-regio="zuid" data-urgentie="actie" data-kans="hoog"
+         data-nieuw="false" data-aannemer="wonen-limburg"
+         data-deurtype="ei30 rc2 woningdeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Groot Onderhoud Deuren &amp; Kozijnen Wonen Limburg</div>
+            <div class="kaart-meta">Roermond (Limburg) &nbsp;|&nbsp; Renovatie &nbsp;|&nbsp; Corporatiewoningen &nbsp;|&nbsp; Week 20</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-actie">🚨 ACTIE DEZE WEEK</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value alert">inkoop@wonenlimburg.nl &middot; 0475-396800</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Fase</div><div class="kaart-veld-value">Aanbesteding Mercell — gunning JULI 2026</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €6.500.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value alert">JULI 2026 — BINNEN 3-4 WEKEN</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 800+ deuren</span>
+          <span class="deur-tag">Woningdeuren renovatie</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">Geschilderd wit/kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> ⚠️ ACTIE DEZE WEEK. OnderhoudPlus heeft nieuw contract getekend met Wonen Limburg (juni 2026) — check of dit de deuren &amp; kozijnen gunning betreft. Gunning verwacht juli 2026 = <strong>BINNEN 3-4 WEKEN</strong>. BEL DIRECT: inkoop@wonenlimburg.nl / 0475-396800 — controleer kwalificatie Albo bij inschrijvers.
+        </div>
+      </div>
+    </div>
+
+    <!-- MFA Bavel Breda -->
+    <div class="kaart-wrapper"
+         data-regio="zuid" data-urgentie="opvolgen" data-kans="hoog"
+         data-nieuw="false" data-aannemer="gemeente-breda-synarchis"
+         data-deurtype="ei30 ei60 rc2 schooldeuren kantoordeuren">
+      <div class="projectkaart kans-hoog">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">MFA Bavel Breda (sporthal + cultuurzaal + horeca)</div>
+            <div class="kaart-meta">Bavel (Noord-Brabant) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Sport/Cultuur &nbsp;|&nbsp; Week 22</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-opvolgen">OPVOLGEN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Architect</div><div class="kaart-veld-value">Synarchis</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@breda.nl &middot; 076-5294444</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">mei 2026 (actief)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q4 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 60 deuren</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">EI60</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">Sporthal</span>
+          <span class="deur-tag">Cultuurzaal</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Funderingswerk na sloop dec 2025. Aannemer naam niet publiek. Bel Synarchis of gemeente Breda (076-5294444) voor doorverwijzing. Bouwperiode aug 2026-sept 2027.
+        </div>
+      </div>
+    </div>
+
+    <!-- De Wijer Hapert -->
+    <div class="kaart-wrapper"
+         data-regio="zuid" data-urgentie="monitoren" data-kans="laag"
+         data-nieuw="false" data-aannemer="van-heugten-beheer"
+         data-deurtype="ei30 rc2 woningdeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">De Wijer Hapert fase 1</div>
+            <div class="kaart-meta">Hapert (Noord-Brabant) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Woningbouw &nbsp;|&nbsp; Week 19</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Developer</div><div class="kaart-veld-value">Van Heugten Beheer</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">10 mei 2026 (actief)</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Projectwaarde</div><div class="kaart-veld-value">ca. €14.000.000</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">november 2026</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 350 deuren</span>
+          <span class="deur-tag">Woningdeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">Wit gespoten</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Bouw in uitvoering. Aannemer naam niet publiek. Navragen bij Van Heugten Beheer voor contactgegevens aannemer. Beslismoment deuren november 2026.
+        </div>
+      </div>
+    </div>
+
+    <!-- Kindcentrum Scharn -->
+    <div class="kaart-wrapper"
+         data-regio="zuid" data-urgentie="monitoren" data-kans="laag"
+         data-nieuw="false" data-aannemer="gemeente-maastricht"
+         data-deurtype="ei30 rc2 hpl schooldeuren">
+      <div class="projectkaart">
+        <div class="kaart-header">
+          <div>
+            <div class="kaart-naam">Kindcentrum Scharn Maastricht</div>
+            <div class="kaart-meta">Maastricht (Limburg) &nbsp;|&nbsp; Nieuwbouw &nbsp;|&nbsp; Onderwijs &nbsp;|&nbsp; Week 23</div>
+          </div>
+          <div class="badges">
+            <span class="badge badge-monitoren">MONITOREN</span>
+            <span class="kans-sterren">&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <div class="kaart-grid">
+          <div class="kaart-veld"><div class="kaart-veld-label">Contact</div><div class="kaart-veld-value">info@gemeentemaastricht.nl &middot; 14043</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Bouwstart</div><div class="kaart-veld-value">Q3/Q4 2026</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Fase</div><div class="kaart-veld-value">Aanbesteding TenderNed #425520</div></div>
+          <div class="kaart-veld"><div class="kaart-veld-label">Beslismoment deuren</div><div class="kaart-veld-value">Q1 2027</div></div>
+        </div>
+        <div class="deur-tags">
+          <span class="deur-tag">ca. 60 deuren</span>
+          <span class="deur-tag">Schooldeuren hout</span>
+          <span class="deur-tag">EI30</span>
+          <span class="deur-tag">RC2</span>
+          <span class="deur-tag">HPL kleur</span>
+        </div>
+        <div class="status-log-entry">
+          <strong>Week 24:</strong> Aanbesteding #425520 lopende. Locatiebezoek 29 mei was. Gunning verwacht zomer 2026. Monitor — zodra aannemer bekend contact opnemen voor deurpakket Q1 2027.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARKTTRENDS -->
+<div class="markttrends">
+  <div class="sectie-titel">&#128200; Markttrends &mdash; <span>Portefeuille Week 24</span></div>
+  <div class="trends-grid">
+    <div class="trend-item">
+      <div class="trend-label">Meest gevraagd deurtype</div>
+      <div class="trend-value">EI30</div>
+      <div class="trend-sub">17 van 23 projecten</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">Tweede meest gevraagd</div>
+      <div class="trend-value">EI60</div>
+      <div class="trend-sub">14 van 23 projecten</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">Meest actieve sector</div>
+      <div class="trend-value">Zorg</div>
+      <div class="trend-sub">8 projecten (35%)</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">Tweede sector</div>
+      <div class="trend-value">Onderwijs</div>
+      <div class="trend-sub">8 projecten (35%)</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">Meest actieve regio</div>
+      <div class="trend-value">Midden</div>
+      <div class="trend-sub">13 van 23 (57%)</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">Exclusieve fabrikant</div>
+      <div class="trend-value">Geen</div>
+      <div class="trend-sub">23 projecten open — voordeel Albo</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">Totaal deuren pipeline</div>
+      <div class="trend-value">~6.700</div>
+      <div class="trend-sub">alle actieve projecten</div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-label">RC2/RC3 meest gevraagd</div>
+      <div class="trend-value">RC2</div>
+      <div class="trend-sub">21 van 23 projecten</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let af = {tegel: null, tv: null, aannemer: '', deurtype: ''};
+
+function applyFilters() {
+  document.querySelectorAll('.projectkaart').forEach(k => {
+    const w = k.closest('.kaart-wrapper');
+    let toon = true;
+    if (af.tegel && af.tv && k.dataset[af.tegel] !== af.tv) toon = false;
+    if (af.aannemer) {
+      const a = (k.dataset.aannemer || '').replace(/-/g, ' ').toLowerCase();
+      if (!a.includes(af.aannemer.toLowerCase())) toon = false;
+    }
+    if (af.deurtype) {
+      if (!(k.dataset.deurtype || '').split(' ').includes(af.deurtype)) toon = false;
+    }
+    w.style.display = toon ? '' : 'none';
+  });
+  document.querySelectorAll('.regio-sectie').forEach(s => {
+    s.style.display = [...s.querySelectorAll('.kaart-wrapper')].some(w => w.style.display !== 'none') ? '' : 'none';
+  });
+}
+
+function filterTegel(filter, waarde, el) {
+  if (el && el.dataset && el.dataset.filter === 'totaal') {
+    af.tegel = null; af.tv = null;
+    document.querySelectorAll('.stat-tegel').forEach(t => t.classList.remove('actief'));
+    applyFilters(); return;
+  }
+  if (af.tegel === filter && af.tv === waarde) { af.tegel = null; af.tv = null; }
+  else { af.tegel = filter; af.tv = waarde; }
+  document.querySelectorAll('.stat-tegel').forEach(t => t.classList.remove('actief'));
+  if (af.tegel && el) el.classList.add('actief');
+  applyFilters();
+}
+
+const za = document.getElementById('zoek-aannemer');
+const wa = document.getElementById('wis-aannemer');
+if (za) {
+  za.addEventListener('input', function() {
+    af.aannemer = this.value.trim();
+    wa.style.display = this.value ? 'inline' : 'none';
+    applyFilters();
+  });
+}
+if (wa) {
+  wa.addEventListener('click', function() {
+    za.value = ''; af.aannemer = ''; this.style.display = 'none'; applyFilters();
+  });
+}
+const fd = document.getElementById('filter-deurtype');
+if (fd) fd.addEventListener('change', function() { af.deurtype = this.value; applyFilters(); });
+</script>
+
+</body>
+</html>
